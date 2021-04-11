@@ -1,0 +1,89 @@
+/*.test {
+	background-color: green;
+}*/
+
+.modal_ec {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	/*overflow: auto;*/
+	background-color: rgba(128, 128, 128, 0.482);
+	/*opacity: 0.5;*/
+	z-index: 9999;
+}
+
+/*たぶんいらない*/
+/*#modal_register{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+}*/
+
+.modal_base {
+	background-color: white;
+	border-radius: 8px;
+	/*opacity: 1;*/
+	width: 80%;
+	height: 80%;
+	overflow: auto;
+	margin: 11% auto;
+}
+
+.modal_btn_div, .modal_btns {
+	display: flex;
+	justify-content: space-around;
+}
+
+.modal_btns {
+	/*width: 400px;*/
+}
+
+
+.btn_modal {
+	margin: 10px;
+	width: 100px;
+}
+
+.modal-body {
+	padding: 30px;
+}
+
+.modal_content {
+	text-align: center;
+}
+
+#beforeChoose, #afterChoose {
+	display: none;
+}
+
+#modal_img {
+	width: 90%;
+}
+
+.item_img {
+	width: 50%
+}
+
+.p_product_id {
+	display: none;
+}
+
+.item_contents {
+	display: flex;
+	flex-direction: row;
+}
+
+.item_details {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 10% 0;
+	justify-content: flex-start;
+}
