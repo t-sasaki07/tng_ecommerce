@@ -1,0 +1,25 @@
+[2021-04-06 14:05:57] local.ERROR: The "--V" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--V\" option does not exist. at C:\\MAMP\\htdocs\\ec-test\\vendor\\symfony\\console\\Input\\ArgvInput.php:201)
+[stacktrace]
+#0 C:\\MAMP\\htdocs\\ec-test\\vendor\\symfony\\console\\Input\\ArgvInput.php(145): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 C:\\MAMP\\htdocs\\ec-test\\vendor\\symfony\\console\\Input\\ArgvInput.php(79): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 C:\\MAMP\\htdocs\\ec-test\\vendor\\symfony\\console\\Input\\Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#3 C:\\MAMP\\htdocs\\ec-test\\vendor\\symfony\\console\\Command\\Command.php(214): Symfony\\Component\\Console\\Input\\Input->bind()
+#4 C:\\MAMP\\htdocs\\ec-test\\vendor\\symfony\\console\\Application.php(1009): Symfony\\Component\\Console\\Command\\Command->run()
+#5 C:\\MAMP\\htdocs\\ec-test\\vendor\\symfony\\console\\Application.php(273): Symfony\\Component\\Console\\Application->doRunCommand()
+#6 C:\\MAMP\\htdocs\\ec-test\\vendor\\symfony\\console\\Application.php(149): Symfony\\Component\\Console\\Application->doRun()
+#7 C:\\MAMP\\htdocs\\ec-test\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(93): Symfony\\Component\\Console\\Application->run()
+#8 C:\\MAMP\\htdocs\\ec-test\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Console\\Application->run()
+#9 C:\\MAMP\\htdocs\\ec-test\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#10 {main}
+"} 
+[2021-04-06 14:33:13] local.ERROR: Maximum execution time of 30 seconds exceeded {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Maximum execution time of 30 seconds exceeded at C:\\MAMP\\htdocs\\ec-test\\storage\\framework\\views\\790e50c298e3736e379719b8bb7f74b30e722a29.php:1)
+[stacktrace]
+#0 {main}
+"} 
+[2021-04-06 14:33:13] local.ERROR: Maximum execution time of 30 seconds exceeded {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Maximum execution time of 30 seconds exceeded at C:\\MAMP\\htdocs\\ec-test\\storage\\framework\\views\\790e50c298e3736e379719b8bb7f74b30e722a29.php:1)
+[stacktrace]
+#0 {main}
+"} 
+
+#0 {main}
+"} 
