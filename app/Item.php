@@ -19,7 +19,11 @@ class Item extends Model
         'price',
         'comment',
         'stock',
-        'time_sale'
+        'time_sale',
+        'img_1',
+        'img_2',
+        'img_3',
+        'img_4',
 
     ];
 }
