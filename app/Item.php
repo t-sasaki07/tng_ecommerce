@@ -26,4 +26,73 @@ class Item extends Model
         'img_4',
 
     ];
-}
+
+
+
+    /**
+     * 新規投稿
+     *@param $input
+     *
+     */
+     public function newSet($input)
+     {
+         \DB::beginTransaction();
+         try {
+             // 登録
+             Item::create($input);
+         } catch (\Throwable $e) {
+             \DB::rollback();
+             abort(50);
+         }
+         \DB::commit();
+     }
+
+
+     /**
+      * 投稿編集
+      * @param $inputs
+      *
+      */
+     public function upNewDate($inputs)
+     {
+
+         \DB::beginTransaction();
+         try {
+             // 登録
+             $item = Item::find($inputs['id']);
+             $item->fill([
+                 'name' => $inputs['name'],
+                 'price' => $inputs['price'],
+                 'comment' => $inputs['comment'],
+                 'stock' => $inputs['stock'],
+                 'time_sale' => $inputs['time_sale'],
+                 'img_1' => $inputs['img_1'],
+                 'img_2' => $inputs['img_2'],
+                 'img_3' => $inputs['img_3'],
+                 'img_4' => $inputs['img_4'],
+             ]);
+             $item->save();
+         } catch (\Throwable $e) {
+             \DB::rollback();
+             abort(500);
+         }
+         \DB::commit();
+     }
+
+     /**
+      * 投稿削除
+      * @param $id
+      *
+      */
+     public function dataDelete($id)
+     {
+
+
+         try {
+             // 削除
+             Item::destroy($id);
+         } catch (\Throwable $e) {
+             abort(500);
+         }
+     }
+    }
