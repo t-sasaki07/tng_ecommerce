@@ -18,8 +18,6 @@ class AdminController extends Controller
     {
         //DBからユーザーデータを全て取得
         $users = User::all();
-        $users = DB::table('useers')->paginate(15);
-
 
         return view('userIndex', ['users' => $users]);
     }

@@ -193,4 +193,17 @@ class ItemController extends Controller
         return view('itemIndex');
     }
 
+
+    /**
+     * 各ページのリンク
+     * @param
+     * @return view
+     */
+    public function tentative()
+    {
+
+
+        return view('tentative');
+    }
+
 }

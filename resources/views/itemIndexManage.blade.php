@@ -13,6 +13,7 @@
 
     <!-- タイムセール時刻設定 -->
     <form method=post action="{{route('timesale')}}">
+    @csrf
     <p>開始時間</p>
     <input id="start" type="time" name="start" value="{{old('start')}}">
     <p>終了時間</p>

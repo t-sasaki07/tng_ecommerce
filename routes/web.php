@@ -50,3 +50,8 @@ Route::get('/userDetail/{id}', 'AdminController@detail');
 
 Route::post('/userDelete/{id}', 'AdminController@delete')->name('userDelete');
 //ユーザーデータ削除
+
+
+
+Route::get('/tentative', 'ItemController@tentative');
+//仮リンク

@@ -3,7 +3,8 @@
 @section('content')
 <div class="container">
     <h1>商品登録</h1>
-    <form method="post" action="{{route('post')}}">
+    <form enctype="multipart/form-data" method="post" action="{{route('post')}}">
+    @csrf
         <p>商品名</p>
         <input id="name" type="text" name="name" value="{{old('name')}}">
 
