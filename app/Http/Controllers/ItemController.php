@@ -59,17 +59,29 @@ class ItemController extends Controller
         $input = $request->all();
 
         //画像データ1~4の処理
-        $img_1 = $request->file('img_1')->store('public');
-        $input['img_1'] = str_replace('public/','', $img_1);
+        if($request->hasFile('img_1'))
+        {
+            $img_1 = $request->file('img_1')->store('public');
+            $input['img_1'] = str_replace('public/','', $img_1);
+        }
 
-        $img_2 = $request->file('img_2')->store('public');
-        $input['img_2'] = str_replace('public/','', $img_2);
+        if($request->hasFile('img_2'))
+        {
+            $img_2 = $request->file('img_2')->store('public');
+            $input['img_2'] = str_replace('public/','', $img_2);
+        }
 
-        $img_3 = $request->file('img_3')->store('public');
-        $input['img_3'] = str_replace('public/','', $img_3);
+        if($request->hasFile('img_3'))
+        {
+            $img_3 = $request->file('img_3')->store('public');
+            $input['img_3'] = str_replace('public/','', $img_3);
+        }
 
-        $img_4 = $request->file('img_4')->store('public');
-        $input['img_4'] = str_replace('public/','', $img_4);
+        if($request->hasFile('img_4'))
+        {
+            $img_4 = $request->file('img_4')->store('public');
+            $input['img_4'] = str_replace('public/','', $img_4);
+        }
 
         //DBへ登録する
         $item = new Item();
@@ -109,17 +121,29 @@ class ItemController extends Controller
         $input = $request->all();
 
         //画像データ1~4の処理
-        $img_1 = $request->file('img_1')->store('public');
-        $input['img_1'] = str_replace('public/','', $img_1);
+        if($request->hasFile('img_1'))
+        {
+            $img_1 = $request->file('img_1')->store('public');
+            $input['img_1'] = str_replace('public/','', $img_1);
+        }
 
-        $img_2 = $request->file('img_2')->store('public');
-        $input['img_2'] = str_replace('public/','', $img_2);
+        if($request->hasFile('img_2'))
+        {
+            $img_2 = $request->file('img_2')->store('public');
+            $input['img_2'] = str_replace('public/','', $img_2);
+        }
 
-        $img_3 = $request->file('img_3')->store('public');
-        $input['img_3'] = str_replace('public/','', $img_3);
+        if($request->hasFile('img_3'))
+        {
+            $img_3 = $request->file('img_3')->store('public');
+            $input['img_3'] = str_replace('public/','', $img_3);
+        }
 
-        $img_4 = $request->file('img_4')->store('public');
-        $input['img_4'] = str_replace('public/','', $img_4);
+        if($request->hasFile('img_4'))
+        {
+            $img_4 = $request->file('img_4')->store('public');
+            $input['img_4'] = str_replace('public/','', $img_4);
+        }
 
         //DBへ登録する
         $item = new Item();

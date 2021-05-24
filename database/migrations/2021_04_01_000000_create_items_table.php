@@ -24,11 +24,11 @@ class CreateItemsTable extends Migration
                 $table->string('img_2')->nullable()->comment('商品画像_2');
                 $table->string('img_3')->nullable()->comment('商品画像_3');
                 $table->string('img_4')->nullable()->comment('商品画像_4');
-                $table->unsignedBigInteger('timesale_id');
+                $table->unsignedBigInteger('timesale_id')->nullable();
                 $table->foreign('timesale_id')->references('id')->on('timesale');
-                $table->unsignedBigInteger('user_id');
+                $table->unsignedBigInteger('user_id')->nullable();
                 $table->foreign('user_id')->references('id')->on('users');
-                $table->unsignedBigInteger('admin_id');
+                $table->unsignedBigInteger('admin_id')->nullable();
                 $table->foreign('admin_id')->references('id')->on('admins');
                 $table->timestamp('updated_at')->useCurrent()->nullable()->comment('登録日時');
                 $table->timestamp('created_at')->useCurrent()->nullable()->comment('更新日時');
