@@ -7,6 +7,7 @@ use App\User;
 use App\Item;
 use App\Time;
 use App\Http\Requests\ItemRequest;
+use App\Http\Requests\TimeSaleRequest;
 use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
@@ -88,7 +89,7 @@ class ItemController extends Controller
         $item->newSet($input);
 
         //フラッシュメッセージ表示
-        \Session::flash('err_msg', config('mssage.complete'));
+        \Session::flash('err_msg', config('message.complete'));
 
         //商品情報一覧ページへリダイレクト
         return redirect(route('itemIndex'));
@@ -207,14 +208,14 @@ class ItemController extends Controller
      * @param $request
      * @return view
      */
-    public function timesale($request)
+    public function timesale(TimeSaleRequest $request)
     {
         $input = $request->all();
 
         $time = new Item();
         $time->newSet($input);
 
-        return view('itemIndex');
+        return redirect(route('itemIndex'));
     }
 
 

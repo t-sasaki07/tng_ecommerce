@@ -12,12 +12,12 @@
     <!-- フラッシュメッセージ表示ここまで -->
 
     <!-- タイムセール時刻設定 -->
-    <form method=post action="{{route('timesale')}}">
+    <form method=post action="{{route('timesale')}}" onSubmit="return checkSubmit()">
     @csrf
     <p>開始時間</p>
     <input id="start" type="time" name="start" value="{{old('start')}}">
     <p>終了時間</p>
-    <input id="start" type="time" name="start" value="{{old('start')}}">
+    <input id="start" type="time" name="fubush" value="{{old('finish')}}">
     <button type=submit class="btn btn-primary">設定する</button>
     </form>
     <!-- タイムセール時刻設定ここまで -->
@@ -42,6 +42,14 @@
 
 
 </div>
-
+<script>
+    function checkSubmit() {
+        if (window.confirm('タイムセールの時刻を登録してよろしいですか？')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 
 @endsection

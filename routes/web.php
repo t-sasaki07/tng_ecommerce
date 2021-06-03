@@ -27,7 +27,7 @@ Route::post('/itemTimeSale', 'Itemcontroller@timesale')->name('timesale');
 //タイムセールの時刻変更
 
 Route::get('/itemRegister', 'ItemController@register');
-Route::post('/itemRegisterPost', 'ItemController@itemPost')->name('post');
+Route::post('/itemPost', 'ItemController@itemPost')->name('newPost');
 //商品投稿
 
 Route::get('/itemDetailManage/{id}', 'ItemController@detail');
