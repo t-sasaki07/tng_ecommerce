@@ -17,6 +17,32 @@ Route::get('/', function () {
     return view('top');
 });
 
+//ユーザー管理
+Route::namespace('User')->prefix('user')->name('user.')->group(function(){
+    Auth::routes([
+        'register' => true,
+        'reset' => false,
+        'verify' => false,
+    ]);
+
+    Route::middlware('auth:user')->group(function(){
+        Route::resource('home', 'HomeController', ['only' => 'index']);
+    });
+});
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+    Auth::routes([
+        'register' => true,
+        'reset' => false,
+        'verify' => false,
+    ]);
+
+    Route::middlware('auth:admin')->group(function(){
+        Route::resource('home', 'HomeController', ['only' => 'index']);
+    });
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -55,3 +81,7 @@ Route::post('/userDelete/{id}', 'AdminController@delete')->name('userDelete');
 
 Route::get('/tentative', 'ItemController@tentative');
 //仮リンク
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
