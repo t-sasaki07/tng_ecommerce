@@ -34,7 +34,7 @@ Route::get('/itemDetailManage/{id}', 'ItemController@detail');
 //商品情報詳細ページ
 
 Route::get('/itemChange/{id}', 'ItemController@change');
-Route::post('/itemChangePost/{id}', 'ItemController@itemChange');
+Route::post('/itemChangePost/{id}', 'ItemController@itemChange')->name('rePost');
 //商品情報変更
 
 Route::post('/userDetail/{id}', 'ItemController@delete');
