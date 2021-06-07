@@ -25,7 +25,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
         'verify' => false,
     ]);
 
-    Route::middlware('auth:user')->group(function(){
+    Route::middleware('auth:user')->group(function(){
         Route::resource('home', 'HomeController', ['only' => 'index']);
     });
 });
@@ -37,7 +37,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
         'verify' => false,
     ]);
 
-    Route::middlware('auth:admin')->group(function(){
+    Route::middleware('auth:admin')->group(function(){
         Route::resource('home', 'HomeController', ['only' => 'index']);
     });
 });
