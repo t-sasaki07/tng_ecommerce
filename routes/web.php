@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,22 +12,55 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// ユーザー
+Route::namespace('User')->prefix('user')->name('user.')->group(function () {
+
+    // ログイン認証関連
+    Auth::routes([
+    'register' => true,
+    'reset' => false,
+    'verify' => false
+    ]);
+
+    // ログイン認証後
+    Route::middleware('auth:user')->group(function () {
+
+        // TOPページ
+        Route::resource('home', 'HomeController', ['only' => 'index']);
+
+    });
+});
+
+// 管理者
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+
+    // ログイン認証関連
+    Auth::routes([
+        'register' => true,
+        'reset' => false,
+        'verify' => false
+        ]);
+
+        // ログイン認証後
+        Route::middleware('auth:admin')->group(function () {
+
+            // TOPページ
+            Route::resource('home', 'HomeController', ['only' => 'index']);
+
+        });
+});
 
 Route::get('/', function () {
-    return view('toppage');
+    return view('top');
 });
 
 Auth::routes();
 
-Route::get('/toppage', 'HomeController@index')->name('toppage');
+Route::get('/home', 'HomeController@index')->name('home');
 
-//下記を追記する
-Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
-Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
-
-Route::post('/login/admin', 'Auth\LoginController@adminLogin');
-Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
-
-Route::view('/home', 'home')->middleware('auth');
-Route::view('/admin', 'admin');
-//上記までを追記する
+Route::group(['middleware' => 'auth:user'], function()
+{
+    Route::get('user/detail', 'User\UserController@index')->name('user.detail');
+    Route::get('user/edit', 'User\UserController@edit')->name('user.edit');
+    Route::post('user/edit', 'User\UserController@update')->name('user.update');
+});

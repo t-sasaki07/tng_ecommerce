@@ -1,78 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<title>EC Site</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-
-        <!-- common css -->
-        {{-- <link rel="stylesheet" href="css/app.css"> --}}
-		<link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/animate.min.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/font-awesome.css">
-        <link rel="stylesheet" href="css/owl.carousel.css">
-        <link rel="stylesheet" href="css/pe-icon-7-stroke.css">
-		<link rel="stylesheet" href="css/common.css">
-
-        {{-- <!--Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <!--Font Awesome5-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"> --}}
-
-        <!-- jQuery cdn -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <style type="text/css">
-            .pr-mng {
-                width: 80%;
-                margin: 20px 10%;
-            }
-        </style>
-    </head>
-
-    <body>
-		<!-- @yield('header') -->
-		<section class="header-top-section">
-			<div class="container">
-				<div class="row">
-					<div  class="col-md-6">
-						<div class="header-top-content">
-							<ul class="nav nav-pills navbar-left">
-								<li><a href="#"><i class="pe-7s-call"></i><span>STORE TOP</span></a></li>
-								<li><a href=""><i class="pe-7s-call"></i><span>123-123456789</span></a></li>
-								<li><a href=""><i class="pe-7s-mail"></i><span> info@mart.com</span></a></li>
-							</ul>
-						</div>
-					</div>
-					<div  class="col-md-6">
-						<div class="header-top-menu">
-							<ul class="nav nav-pills navbar-right">
-								<li><a href='#'>My Page</a></li>
-								<li><a href="#">Cart</a></li>
-                                @if (Route::has('login'))
-                                    @auth
-                                        <li><a href="{{ url('/home') }}"><i class="pe-7s-lock"></i>Home</a></li>
-                                    @else
-                                        <li><a href="{{ route('login') }}"><i class="pe-7s-lock"></i>Login</a></li>
-
-                                        @if (Route::has('register'))
-                                            <li><a href="{{ route('register') }}"><i class="pe-7s-lock"></i>Register</a></li>
-                                        @endif
-                                    @endauth
-                                @endif
-								<li><a href="#">Manage</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
+@extends('layouts.layout')
+@section('content')
 		<header class="header-section">
 			<nav class="navbar navbar-default">
 				<div class="container">
@@ -310,23 +237,4 @@
 				</div>
 			</div>
 		</div>
-
-
-
-		<!-- @yield('footer') -->
-		<footer class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<p class="center">Made with <i class="fa fa-heart"></i> by <a href="https://revolthemes.net/" target="_blank">Revolthemes</a>. All Rights Reserved</p>
-
-					</div>
-				</div>
-			</div>
-		</footer>
-
-		<!-- common js -->
-		<!-- <script src=""></script> -->
-		<script src="js/top.js "></script>
-	</body>
-</html>
+@endsection

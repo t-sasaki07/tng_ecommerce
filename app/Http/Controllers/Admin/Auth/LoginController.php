@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 // 下記を追記する
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 // 上記までを追記する
 
 class LoginController extends Controller
@@ -31,7 +31,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::ADMIN_HOME;
 
     /**
      * Create a new controller instance.
@@ -40,28 +40,33 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
         //下記を追記する
         $this->middleware('guest:admin')->except('logout');
     }
-    // 下記を追記する
+
+    // Guardの認証方法を指定
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }
+
+    // ログイン画面
     public function showAdminLoginForm()
     {
-        return view('auth.login', ['url' => 'admin']);
+        return view('admin.auth.login');
     }
 
-    public function adminLogin(Request $request)
+    // ログアウト処理
+    public function logout(Request $request)
     {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
-        ]);
+        Auth::guard('admin')->logout;
 
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
-            return redirect()->intended('/admin');
-        }
-        return back()->withInput($request->only('email', 'remember'));
+        return $this->loggedOut($request);
     }
-    // 上記までを追記
+
+    // ログアウトした時のリダイレクト先
+    public function loggedOut(Request $request)
+    {
+        return redirect(route('admin.login'));
+    }
 }

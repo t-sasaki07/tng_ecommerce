@@ -26,10 +26,11 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->comment('パスワード');
             $table->rememberToken();
-            $table->timestamp('updated_at')->useCurrent()->nullable()->comment('登録日時');
-            $table->timestamp('created_at')->useCurrent()->nullable()->comment('更新日時');
+            $table->timestamps();
         });
     }
+
+
 
     /**
      * Reverse the migrations.
