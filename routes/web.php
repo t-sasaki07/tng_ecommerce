@@ -67,3 +67,6 @@ Route::group(['middleware' => 'auth:user'], function()
 
 //商品一覧画面を表示
 Route::get('/item/index', 'ItemController@index')->name('item.index');
+
+//商品詳細画面を表示
+Route::get('/item/{id}', 'ItemController@detail')->name('item.detail');
