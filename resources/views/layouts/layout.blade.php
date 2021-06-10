@@ -35,14 +35,14 @@
         </style>
     </head>
 
-<body>
-    @include('header')
-    @yield('content')
-    @include('footer')
+    <body>
+        @include('header')
+        @yield('content')
+        @include('footer')
 
-    <!-- common js -->
-		<!-- <script src=""></script> -->
-		<script src="js/top.js "></script>
-</body>
+        <!-- common js -->
+            <!-- <script src=""></script> -->
+            <script src="js/top.js "></script>
+    </body>
 
 </html>
