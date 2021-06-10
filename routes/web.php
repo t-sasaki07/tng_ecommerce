@@ -64,3 +64,6 @@ Route::group(['middleware' => 'auth:user'], function()
     Route::get('user/edit', 'User\UserController@edit')->name('user.edit');
     Route::post('user/edit', 'User\UserController@update')->name('user.update');
 });
+
+//商品一覧画面を表示
+Route::get('/item/index', 'ItemController@index')->name('item.index');
