@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -62,7 +63,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(UserRequest $request)
     {
         //
         $user_form = $request->all();
@@ -71,8 +72,11 @@ class UserController extends Controller
         unset($user_form['_token']);
         //保存
         $user->fill($user_form)->save();
+        // 保存メッセージ
+        \Session::flash('err_msg', config('message.complete'));
+
         //リダイレクト
-        return redirect('user/detail');
+        return redirect(route('userDetail'));
     }
 
     /**
@@ -84,5 +88,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getLogout()
+    {
+        Auth::logout();
+        return redirect()->route('user.login');
+    }
+
+    public function confirm(UserRequest $request)
+    {
+        $validated = $request->validated();
+        return view('user.detail')->with($validated);
     }
 }

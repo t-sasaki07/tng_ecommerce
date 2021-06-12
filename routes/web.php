@@ -58,9 +58,28 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+// ログアウト機能
+Route::get('/user/logout', 'UserController@getLogout')->name('userLogout');
+
+
+// ユーザー権限による機能
 Route::group(['middleware' => 'auth:user'], function()
 {
-    Route::get('user/detail', 'User\UserController@index')->name('user.detail');
-    Route::get('user/edit', 'User\UserController@edit')->name('user.edit');
-    Route::post('user/edit', 'User\UserController@update')->name('user.update');
+
+    // マイページ・ユーザー情報変更関連
+    Route::get('user/detail', 'User\UserController@index')->name('userDetail');
+    Route::get('user/edit', 'User\UserController@edit')->name('userEdit');
+    Route::post('user/edit', 'User\UserController@update')->name('userUpdate');
+
+    // カート関連
+    Route::view('/no-cartList', 'products/no_cart_list')->name('noCartlist');
+    Route::view('/purchaseCompleted', 'products/purchase_completed');
+
+    Route::resource('cartlist', 'CartController', ['only' => ['index']]);
+    Route::post('productInfo/addCart/cartListRemove', 'CartController@remove')->name('itemRemove');
+    Route::post('productInfo/addCart','CartController@addCart')->name('addcart.post');
+    Route::post('productInfo/addCart/orderFinalize','CartController@store')->name('orderFinalize');
+
+
 });

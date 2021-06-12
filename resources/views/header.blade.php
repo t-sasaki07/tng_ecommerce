@@ -14,19 +14,25 @@
             <div  class="col-md-6">
                 <div class="header-top-menu">
                     <ul class="nav nav-pills navbar-right">
-                        <li><a href="{{ action('User\UserController@index') }}">My Page</a></li>
-                        <li><a href="#">Cart</a></li>
-                        @if (Route::has('login'))
-                            @auth
-                                <li><a href="{{ url('/home') }}">Home</a></li>
-                            @else
-                                <li><a href="{{ route('user.login') }}"><i class="pe-7s-lock"></i>Login</a></li>
-
-                                @if (Route::has('register'))
-                                    <li><a href="{{ route('user.register') }}"><i class="pe-7s-lock"></i>Register</a></li>
-                                @endif
-                            @endauth
+                        @if(Auth::check())
+                            <li><a href="{{ route('userDetail') }}">My Page</a></li>
+                            <li><a href="#">Cart</a></li>
+                            <li><a href="{{ route('userLogout') }}">Logout</a></li>
                         @endif
+                        @guest
+                            @if (Route::has('login'))
+                                @auth
+                                    <li><a href="{{ url('/home') }}">Home</a></li>
+                                @else
+                                    <li><a href="{{ route('user.login') }}"><i class="pe-7s-lock"></i>Login</a></li>
+
+                                    @if (Route::has('register'))
+                                        <li><a href="{{ route('user.register') }}"><i class="pe-7s-lock"></i>Register</a></li>
+                                    @endif
+                                @endauth
+                            @endif
+                        @endguest
+                        {{--  管理者ログイン登録をどう遷移させるか  --}}
                         <li><a href="#">Manage</a></li>
                     </ul>
                 </div>
