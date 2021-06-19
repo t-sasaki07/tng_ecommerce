@@ -19,6 +19,8 @@
         <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/pe-icon-7-stroke.css">
 		<link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="/css/app.css">
+        <script src="/js/app.js" defer></script>
 
         {{-- <!--Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
