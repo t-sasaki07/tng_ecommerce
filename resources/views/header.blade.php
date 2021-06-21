@@ -20,10 +20,10 @@
                                     @auth
                                         <li><a href="{{ url('/home') }}"><i class="pe-7s-lock"></i>Home</a></li>
                                     @else
-                                        <li><a href="{{ url('/home') }}"><i class="pe-7s-lock"></i>Login</a></li>
+                                        <li><a href="{{ route('user.login') }}"><i class="pe-7s-lock"></i>Login</a></li>
 
                                         @if (Route::has('register'))
-                                            <li><a href="{{ route('register') }}"><i class="pe-7s-lock"></i>Register</a></li>
+                                            <li><a href="{{ route('user.register') }}"><i class="pe-7s-lock"></i>Register</a></li>
                                         @endif
                                     @endauth
                                 @endif

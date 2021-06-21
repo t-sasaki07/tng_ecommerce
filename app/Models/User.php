@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -36,4 +36,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * 投稿削除
+     * @param $id
+     *
+     */
+    public function dataDelete($id)
+    {
+
+
+        try {
+            // 削除
+            User::destroy($id);
+        } catch (\Throwable $e) {
+            abort(500);
+        }
+    }
 }

@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title', 'ユーザー詳細管理画面')
 @section('content')
-<div class="containser">
+<div class="container">
     <h1>{{$user->name}}</h1>
     <p>郵便番号：{{$user->postal_code}}</p>
     <p>都道府県：{{$user->prefecture}}</p>

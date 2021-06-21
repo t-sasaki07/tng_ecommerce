@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title', 'ユーザー一覧管理画面')
 @section('content')
-
+<div class="container">
     <table class="table-sm">
         <tr>
             <th>名前</th>
@@ -24,6 +24,7 @@
 
 
     </table>
+</div>
     <script>
         function checkDelite() {
             if (window.confirm('削除してよろしいですか？')) {

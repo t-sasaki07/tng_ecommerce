@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -38,4 +39,22 @@ class Admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * 投稿削除
+     * @param $id
+     *
+     */
+    public function dataDelete($id)
+    {
+
+
+        try {
+            // 削除
+            User::destroy($id);
+        } catch (\Throwable $e) {
+            abort(500);
+        }
+    }
 }

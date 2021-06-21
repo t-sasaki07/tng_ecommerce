@@ -14,7 +14,7 @@ class Item extends Model
      */
     protected $table = 'items';
 
-    protected $fiilable = [
+    protected $fillable = [
         'name',
         'price',
         'comment',
@@ -42,6 +42,8 @@ class Item extends Model
             \DB::commit();
         } catch (\Throwable $e) {
             report($e);
+            \DB::rollback();
+            abort(500);
             session()->flash('err_msg', '更新が失敗しました');
 
         }

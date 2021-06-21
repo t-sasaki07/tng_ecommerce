@@ -11,9 +11,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
 
         <!-- common css -->
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="<?php echo e(asset('css/style.css')); ?>">
 
-		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="<?php echo e(asset('css/common.css')); ?>">
 
 
         

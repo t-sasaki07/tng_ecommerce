@@ -9,7 +9,7 @@ class Time extends Model
     //
     protected $table = 'timesale';
 
-    protected $fiilable = [
+    protected $fillable = [
         'start',
         'finish'
 

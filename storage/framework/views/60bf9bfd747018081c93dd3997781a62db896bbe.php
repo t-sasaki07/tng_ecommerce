@@ -20,10 +20,10 @@
                                     <?php if(auth()->guard()->check()): ?>
                                         <li><a href="<?php echo e(url('/home')); ?>"><i class="pe-7s-lock"></i>Home</a></li>
                                     <?php else: ?>
-                                        <li><a href="<?php echo e(url('/home')); ?>"><i class="pe-7s-lock"></i>Login</a></li>
+                                        <li><a href="<?php echo e(route('user.login')); ?>"><i class="pe-7s-lock"></i>Login</a></li>
 
                                         <?php if(Route::has('register')): ?>
-                                            <li><a href="<?php echo e(route('register')); ?>"><i class="pe-7s-lock"></i>Register</a></li>
+                                            <li><a href="<?php echo e(route('user.register')); ?>"><i class="pe-7s-lock"></i>Register</a></li>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 <?php endif; ?>

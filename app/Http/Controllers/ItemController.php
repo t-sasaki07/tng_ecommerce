@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
 use App\Item;
 use App\Time;
+use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
 use App\Http\Requests\TimeSaleRequest;
 use Illuminate\Support\Facades\DB;
@@ -85,8 +86,19 @@ class ItemController extends Controller
         }
 
         //DBへ登録する
-        $item = new Item();
-        $item->newSet($input);
+        \DB::beginTransaction();
+        try {
+            // 登録
+            Item::create($input);
+            \DB::commit();
+        } catch (\Throwable $e) {
+            report($e);
+            \DB::rollback();
+            abort(500);
+            session()->flash('err_msg', '更新が失敗しました');
+        }
+
+
 
         //フラッシュメッセージ表示
         \Session::flash('err_msg', config('message.complete'));
@@ -212,9 +224,18 @@ class ItemController extends Controller
     {
         $input = $request->all();
 
-        $time = new Item();
-        $time->newSet($input);
+        \DB::beginTransaction();
+        try {
+            // 登録
+            Time::create($input);
+            \DB::commit();
+        } catch (\Throwable $e) {
+            report($e);
+            \DB::rollback();
+            //abort(500);
+            session()->flash('err_msg', '更新が失敗しました');
 
+        }
         return redirect(route('itemIndex'));
     }
 
