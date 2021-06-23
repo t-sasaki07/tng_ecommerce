@@ -17,7 +17,7 @@
     <p>開始時間</p>
     <input id="start" type="time" name="start" value="{{old('start')}}">
     <p>終了時間</p>
-    <input id="start" type="time" name="fubush" value="{{old('finish')}}">
+    <input id="finish" type="time" name="finish" value="{{old('finish')}}">
     <button type=submit class="btn btn-primary">設定する</button>
     </form>
     <!-- タイムセール時刻設定ここまで -->

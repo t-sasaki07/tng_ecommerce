@@ -6,7 +6,7 @@
     <p>価格：{{$item->price}}</p>
     <p>在庫：{{$item->stock}}</p>
     <p>商品説明：{{$item->comment}}</p>
-    <p>タイムセール時の割引率：{{$item->time_sale}}</p>
+    <p>タイムセール時の割引率：{{$item->sale}}</p>
     <img src="{{ asset('/storage/'.$item->img_1)}}" alt="" width="50px" height="auto">
     <img src="{{ asset('/storage/'.$item->img_2)}}" alt="" width="50px" height="auto">
     <img src="{{ asset('/storage/'.$item->img_3)}}" alt="" width="50px" height="auto">

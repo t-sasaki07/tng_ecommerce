@@ -28,7 +28,7 @@ class ItemRequest extends FormRequest
             'price' => 'required | integer | max:9999999',
             'stock' => 'required | integer | max:99',
             'comment' => 'required | max:200',
-            'time_sale' => 'required | integer | max:99',
+            'sale' => 'required | integer | max:99',
         ];
     }
 }

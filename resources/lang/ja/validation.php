@@ -150,7 +150,7 @@ return [
         'price' => '価格',
         'comment' => '商品説明',
         'stock' => '在庫数',
-        'time_sale' => '割引率',
+        'sale' => '割引率',
     ],
 
 ];

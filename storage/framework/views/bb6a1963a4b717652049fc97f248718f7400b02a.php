@@ -41,9 +41,9 @@
         <?php endif; ?>
 
         <p>割引率</p>
-        <input id="time_sale" type="int" name="time_sale" value="<?php echo e(old('time_sale')); ?>">
-        <?php if($errors->has('time_sale')): ?>
-        <?php echo e($errors->first('time_sale')); ?>
+        <input id="sale" type="int" name="sale" value="<?php echo e(old('sale')); ?>">
+        <?php if($errors->has('sale')): ?>
+        <?php echo e($errors->first('sale')); ?>
 
         <?php endif; ?>
 

@@ -37,9 +37,9 @@
         @endif
 
         <p>割引率</p>
-        <input id="time_sale" type="int" name="time_sale" value="{{old('time_sale')}}">
-        @if ($errors->has('time_sale'))
-        {{$errors->first('time_sale')}}
+        <input id="sale" type="int" name="sale" value="{{old('sale')}}">
+        @if ($errors->has('sale'))
+        {{$errors->first('sale')}}
         @endif
 
         <p>商品画像①</p>
