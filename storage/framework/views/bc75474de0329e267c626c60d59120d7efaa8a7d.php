@@ -30,7 +30,7 @@
         </tr>
         <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
-            <th><a href="/itemDetail/<?php echo e($item->id); ?>"><?php echo e($item->name); ?></a></th>
+            <th><a href="/itemDetailManage/<?php echo e($item->id); ?>"><?php echo e($item->name); ?></a></th>
             <th><?php echo e($item->price); ?></th>
             <th><?php echo e($item->stock); ?></th>
 

@@ -30,7 +30,7 @@
         </tr>
         @foreach($items as $item)
         <tr>
-            <th><a href="/itemDetail/{{$item->id}}">{{$item->name}}</a></th>
+            <th><a href="/itemDetailManage/{{$item->id}}">{{$item->name}}</a></th>
             <th>{{$item->price}}</th>
             <th>{{$item->stock}}</th>
 
