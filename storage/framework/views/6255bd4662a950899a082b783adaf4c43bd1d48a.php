@@ -12,7 +12,7 @@
             <th><a href="/userDetail/<?php echo e($user->id); ?>"><?php echo e($user->name); ?></a></th>
             <th><?php echo e($user->email); ?></th>
             <th>
-                <form method=post action="<?php echo e(route('userDelete', $user->id)); ?>" onSubmit="return checkDelite()">
+                <form method=post action="<?php echo e(route('userDelete', $user->id)); ?>" onSubmit="return checkDelete()">
                     <?php echo csrf_field(); ?>
                     <button type=submit onclick="">削除</button>
                 </form>
@@ -25,7 +25,7 @@
     </table>
 </div>
     <script>
-        function checkDelite() {
+        function checkD() {
             if (window.confirm('削除してよろしいですか？')) {
                 return true;
             } else {

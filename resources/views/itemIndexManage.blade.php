@@ -15,9 +15,9 @@
     <form method=post action="{{route('timesale')}}" onSubmit="return checkSubmit()">
     @csrf
     <p>開始時間</p>
-    <input id="start" type="time" name="start" value="{{old('start')}}">
+    <input id="start" type="time" name="start" value="{{ $time->start }}">
     <p>終了時間</p>
-    <input id="finish" type="time" name="finish" value="{{old('finish')}}">
+    <input id="finish" type="time" name="finish" value="{{ $time->finish }}">
     <button type=submit class="btn btn-primary">設定する</button>
     </form>
     <!-- タイムセール時刻設定ここまで -->

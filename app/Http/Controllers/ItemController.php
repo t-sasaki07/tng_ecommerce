@@ -11,6 +11,7 @@ use App\Http\Requests\ItemRequest;
 use App\Http\Requests\TimeSaleRequest;
 use Illuminate\Support\Facades\DB;
 
+
 class ItemController extends Controller
 {
 
@@ -22,21 +23,23 @@ class ItemController extends Controller
      */
     public function index()
     {
+        //商品情報の取得
         $items = Item::all();
-
         if (is_null($items)) {
             \Session::flash('err_msg', config('message.noData'));
             return redirect(route('itemIndex'));
         }
-
         $items = DB::table('items')->paginate(15);
 
-        return view('/itemIndexManage', ['items' => $items]);
+        //タイムセール時刻の取得
+        $time = Time::first();
+
+        return view('/itemIndexManage', ['items' => $items], ['time'=> $time]);
     }
 
 
 
-     /**
+    /**
      * 商品情報投稿ページの表示
      *
      *
@@ -61,28 +64,24 @@ class ItemController extends Controller
         $input = $request->all();
 
         //画像データ1~4の処理
-        if($request->hasFile('img_1'))
-        {
+        if ($request->hasFile('img_1')) {
             $img_1 = $request->file('img_1')->store('public');
-            $input['img_1'] = str_replace('public/','', $img_1);
+            $input['img_1'] = str_replace('public/', '', $img_1);
         }
 
-        if($request->hasFile('img_2'))
-        {
+        if ($request->hasFile('img_2')) {
             $img_2 = $request->file('img_2')->store('public');
-            $input['img_2'] = str_replace('public/','', $img_2);
+            $input['img_2'] = str_replace('public/', '', $img_2);
         }
 
-        if($request->hasFile('img_3'))
-        {
+        if ($request->hasFile('img_3')) {
             $img_3 = $request->file('img_3')->store('public');
-            $input['img_3'] = str_replace('public/','', $img_3);
+            $input['img_3'] = str_replace('public/', '', $img_3);
         }
 
-        if($request->hasFile('img_4'))
-        {
+        if ($request->hasFile('img_4')) {
             $img_4 = $request->file('img_4')->store('public');
-            $input['img_4'] = str_replace('public/','', $img_4);
+            $input['img_4'] = str_replace('public/', '', $img_4);
         }
 
         //DBへ登録する
@@ -105,7 +104,6 @@ class ItemController extends Controller
 
         //商品情報一覧ページへリダイレクト
         return redirect(route('itemIndex'));
-
     }
 
 
@@ -134,29 +132,26 @@ class ItemController extends Controller
         $input = $request->all();
 
         //画像データ1~4の処理
-        if($request->hasFile('img_1'))
-        {
+        if ($request->hasFile('img_1')) {
             $img_1 = $request->file('img_1')->store('public');
-            $input['img_1'] = str_replace('public/','', $img_1);
+            $input['img_1'] = str_replace('public/', '', $img_1);
         }
 
-        if($request->hasFile('img_2'))
-        {
+        if ($request->hasFile('img_2')) {
             $img_2 = $request->file('img_2')->store('public');
-            $input['img_2'] = str_replace('public/','', $img_2);
+            $input['img_2'] = str_replace('public/', '', $img_2);
         }
 
-        if($request->hasFile('img_3'))
-        {
+        if ($request->hasFile('img_3')) {
             $img_3 = $request->file('img_3')->store('public');
-            $input['img_3'] = str_replace('public/','', $img_3);
+            $input['img_3'] = str_replace('public/', '', $img_3);
         }
 
-        if($request->hasFile('img_4'))
-        {
+        if ($request->hasFile('img_4')) {
             $img_4 = $request->file('img_4')->store('public');
-            $input['img_4'] = str_replace('public/','', $img_4);
+            $input['img_4'] = str_replace('public/', '', $img_4);
         }
+
 
         //DBへ登録する
         $item = new Item();
@@ -167,7 +162,6 @@ class ItemController extends Controller
 
         //商品情報一覧ページへリダイレクト
         return redirect(route('itemIndex'));
-
     }
 
 
@@ -189,7 +183,7 @@ class ItemController extends Controller
         return view('itemDetailManage', ['item' => $item]);
     }
 
-        /**
+    /**
      * 商品情報の削除
      *
      * @param $id
@@ -198,7 +192,7 @@ class ItemController extends Controller
     public function itemDelete($id)
     {
         //データの有無を確認
-        if(empty($id)) {
+        if (empty($id)) {
             \Session::flash('err_mesg', config('message.noData'));
             return redirect(route('itemIndex'));
         }
@@ -222,19 +216,23 @@ class ItemController extends Controller
      */
     public function timesale(TimeSaleRequest $request)
     {
-        $input = $request->all();
+        //タイムセールの最新カラムを削除する
+        $time = Time::latest()->first();
+        $id = $time->id;
+        $time = new Time();
+        $time->timeDelete($id);
 
+        //タイムセールの時刻を登録する
+        $input = $request->all();
         \DB::beginTransaction();
         try {
-            // 登録
             Time::create($input);
             \DB::commit();
         } catch (\Throwable $e) {
             report($e);
             \DB::rollback();
-            //abort(500);
+            abort(500);
             session()->flash('err_msg', '更新が失敗しました');
-
         }
         return redirect(route('itemIndex'));
     }
@@ -247,9 +245,8 @@ class ItemController extends Controller
      */
     public function tentative()
     {
-
-
-        return view('tentative');
+        //タイムセール時刻の取得
+        $time = Time::latest()->first();
+        return view('tentative', ['time' => $time]);
     }
-
 }

@@ -15,9 +15,9 @@
     <form method=post action="<?php echo e(route('timesale')); ?>" onSubmit="return checkSubmit()">
     <?php echo csrf_field(); ?>
     <p>開始時間</p>
-    <input id="start" type="time" name="start" value="<?php echo e(old('start')); ?>">
+    <input id="start" type="time" name="start" value="<?php echo e($time->start); ?>">
     <p>終了時間</p>
-    <input id="finish" type="time" name="finish" value="<?php echo e(old('finish')); ?>">
+    <input id="finish" type="time" name="finish" value="<?php echo e($time->finish); ?>">
     <button type=submit class="btn btn-primary">設定する</button>
     </form>
     <!-- タイムセール時刻設定ここまで -->

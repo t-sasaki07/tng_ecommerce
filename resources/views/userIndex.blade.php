@@ -13,7 +13,7 @@
             <th><a href="/userDetail/{{$user->id}}">{{$user->name}}</a></th>
             <th>{{$user->email}}</th>
             <th>
-                <form method=post action="{{ route('userDelete', $user->id) }}" onSubmit="return checkDelite()">
+                <form method=post action="{{ route('userDelete', $user->id) }}" onSubmit="return checkDelete()">
                     @csrf
                     <button type=submit onclick="">削除</button>
                 </form>
@@ -26,7 +26,7 @@
     </table>
 </div>
     <script>
-        function checkDelite() {
+        function checkD() {
             if (window.confirm('削除してよろしいですか？')) {
                 return true;
             } else {

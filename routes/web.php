@@ -59,11 +59,11 @@ Route::post('/itemPost', 'ItemController@itemPost')->name('newPost');
 Route::get('/itemDetailManage/{id}', 'ItemController@detail');
 //商品情報詳細ページ
 
-Route::get('/itemChange/{id}', 'ItemController@change');
+Route::get('/itemChange/{id}', 'ItemController@change')->name('change');
 Route::post('/itemChangePost/{id}', 'ItemController@itemChange')->name('rePost');
 //商品情報変更
 
-Route::post('/userDetail/{id}', 'ItemController@delete');
+Route::post('/itemDelete/{id}', 'ItemController@itemDelete')->name('itemDelete');
 //商品情報削除
 
 

@@ -9,7 +9,7 @@
     <p>建物名・部屋番号：<?php echo e($user->building); ?></p>
     <p>電話番号：<?php echo e($user->phone); ?></p>
     <p>メールアドレス：<?php echo e($user->email); ?></p>
-    <form method=post action="<?php echo e(route('userDelete', $user->id)); ?>" onSubmit="return checkDelite()">
+    <form method=post action="<?php echo e(route('userDelete', $user->id)); ?>" onSubmit="return checkDelete()">
         <?php echo csrf_field(); ?>
         <button type=submit onclick="">削除</button>
     </form>
@@ -18,7 +18,7 @@
 
 </div>
 <script>
-        function checkDelite() {
+        function checkDelete() {
             if (window.confirm('削除してよろしいですか？')) {
                 return true;
             } else {

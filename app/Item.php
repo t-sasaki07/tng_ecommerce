@@ -15,6 +15,7 @@ class Item extends Model
     protected $table = 'items';
 
     protected $fillable = [
+        'id',
         'name',
         'price',
         'comment',
@@ -52,28 +53,29 @@ class Item extends Model
 
     /**
      * 投稿編集
-     * @param $inputs
+     * @param $input
      *
      */
-    public function upNewDate($inputs)
-    {
-
+    public function upNewData($input)
+    { 
         \DB::beginTransaction();
         try {
             // 登録
-            $item = Item::find($inputs['id']);
+            $item = Item::find($input['id']);
             $item->fill([
-                'name' => $inputs['name'],
-                'price' => $inputs['price'],
-                'comment' => $inputs['comment'],
-                'stock' => $inputs['stock'],
-                'img_1' => $inputs['img_1'],
-                'img_2' => $inputs['img_2'],
-                'img_3' => $inputs['img_3'],
-                'img_4' => $inputs['img_4'],
+                'name' => $input['name'],
+                'price' => $input['price'],
+                'comment' => $input['comment'],
+                'stock' => $input['stock'],
+                'sale' => $input['sale'],
+                'img_1' => $input['img_1'],
+                'img_2' => $input['img_2'],
+                'img_3' => $input['img_3'],
+                'img_4' => $input['img_4'],
             ]);
             $item->save();
         } catch (\Throwable $e) {
+            report($e);
             \DB::rollback();
             abort(500);
         }
@@ -96,4 +98,6 @@ class Item extends Model
             abort(500);
         }
     }
+
+
 }

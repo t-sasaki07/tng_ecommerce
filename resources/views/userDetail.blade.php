@@ -10,7 +10,7 @@
     <p>建物名・部屋番号：{{$user->building}}</p>
     <p>電話番号：{{$user->phone}}</p>
     <p>メールアドレス：{{$user->email}}</p>
-    <form method=post action="{{ route('userDelete', $user->id) }}" onSubmit="return checkDelite()">
+    <form method=post action="{{ route('userDelete', $user->id) }}" onSubmit="return checkDelete()">
         @csrf
         <button type=submit onclick="">削除</button>
     </form>
@@ -19,7 +19,7 @@
 
 </div>
 <script>
-        function checkDelite() {
+        function checkDelete() {
             if (window.confirm('削除してよろしいですか？')) {
                 return true;
             } else {
