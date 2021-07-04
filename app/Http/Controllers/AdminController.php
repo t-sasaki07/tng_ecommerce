@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Admin;
 use App\Item;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -17,6 +18,11 @@ class AdminController extends Controller
      */
     public function index()
     {
+        //管理者ログイン済でなければトップページへ遷移させる
+        if (Auth::guard('admin')->check() == false ) {
+            return redirect (route('/'));
+        }
+
         //DBからユーザーデータを全て取得
         $users = User::all();
 
@@ -32,6 +38,11 @@ class AdminController extends Controller
      */
     public function detail($id)
     {
+        //管理者ログイン済でなければトップページへ遷移させる
+        if (Auth::guard('admin')->check() == false ) {
+            return redirect (route('/'));
+        }
+
         //DBからデータを取得
         $user = User::find($id);
 

@@ -14,6 +14,14 @@
   タイムセールの時刻は、<?php echo e($time->start); ?>〜<?php echo e($time->finish); ?>です。
 <?php endif; ?>
 
+<?php if( Auth::guard('admin')->check() ): ?>
+  管理者権限にてログイン済です
+<?php elseif( Auth::guard('user')->check() ): ?>
+  ユーザーログイン済です
+<?php else: ?>
+　ログインされていません
+<?php endif; ?>
+
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/MAMP/htdocs/tng_ecommerce/resources/views/tentative.blade.php ENDPATH**/ ?>

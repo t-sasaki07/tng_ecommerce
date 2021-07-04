@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Admin;
 use App\Item;
 use App\Time;
 use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
 use App\Http\Requests\TimeSaleRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class ItemController extends Controller
@@ -23,6 +26,11 @@ class ItemController extends Controller
      */
     public function index()
     {
+        //管理者ログイン済でなければトップページへ遷移させる
+        if (Auth::guard('admin')->check() == false ) {
+            return redirect (route('/'));
+        }
+
         //商品情報の取得
         $items = Item::all();
         if (is_null($items)) {
@@ -47,7 +55,10 @@ class ItemController extends Controller
      */
     public function register()
     {
-
+        //管理者ログイン済でなければトップページへ遷移させる
+        if (Auth::guard('admin')->check() == false ) {
+            return redirect (route('/'));
+        }
 
         return view('itemRegister');
     }
@@ -173,6 +184,11 @@ class ItemController extends Controller
      */
     public function detail($id)
     {
+        //管理者ログイン済でなければトップページへ遷移させる
+        if (Auth::guard('admin')->check() == false ) {
+            return redirect (route('/'));
+        }
+
         $item = Item::find($id);
 
         if (is_null($item)) {
@@ -272,6 +288,7 @@ class ItemController extends Controller
      */
     public function tentative()
     {
+
         //タイムセール時刻の取得
         $time = Time::latest()->first();
         return view('tentative', ['time' => $time]);

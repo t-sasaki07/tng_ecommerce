@@ -15,4 +15,12 @@
   タイムセールの時刻は、{{ $time->start }}〜{{ $time->finish }}です。
 @endif
 
+@if( Auth::guard('admin')->check() )
+  管理者権限にてログイン済です
+@elseif( Auth::guard('user')->check() )
+  ユーザーログイン済です
+@else
+　ログインされていません
+@endif
+
 @endsection
