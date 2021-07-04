@@ -52,6 +52,9 @@
         <?php endif; ?>
 
         <p>商品画像②</p>
+        <?php if(!empty($items->img_2)): ?>
+        <img src="<?php echo e(asset('storage/'.$items->img_2)); ?>" alt="" width="100px" height="auto">
+        <?php endif; ?>
         <input id="img_2" type="file" name="img_2" accept="image/*" value="<?php echo e($items->img_2); ?>">
         <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
         <?php if($errors->has('img_2')): ?>
@@ -60,6 +63,9 @@
         <?php endif; ?>
 
         <p>商品画像③</p>
+        <?php if(!empty($items->img_3)): ?>
+        <img src="<?php echo e(asset('storage/'.$items->img_3)); ?>" alt="" width="100px" height="auto">
+        <?php endif; ?>
         <input id="img_3" type="file" name="img_3" accept="image/*" value="<?php echo e($items->img_3); ?>">
         <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
         <?php if($errors->has('img_3')): ?>
@@ -68,6 +74,9 @@
         <?php endif; ?>
 
         <p>商品画像④</p>
+        <?php if(!empty($items->img_4)): ?>
+        <img src="<?php echo e(asset('storage/'.$items->img_4)); ?>" alt="" width="100px" height="auto">
+        <?php endif; ?>
         <input id="img_4" type="file" name="img_4" accept="image/*" value="<?php echo e($items->img_4); ?>">
         <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
         <?php if($errors->has('img_4')): ?>

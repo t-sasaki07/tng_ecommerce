@@ -198,8 +198,8 @@ class ItemController extends Controller
         }
 
         //DBから削除
-        $user = new Item();
-        $user->dataDelete($id);
+        $item = new Item();
+        $item->dataDelete($id);
 
         //フラッシュメッセージを表示
         \Session::flash('err_msg', config('message.delete'));
@@ -218,9 +218,12 @@ class ItemController extends Controller
     {
         //タイムセールの最新カラムを削除する
         $time = Time::latest()->first();
-        $id = $time->id;
-        $time = new Time();
-        $time->timeDelete($id);
+        if (!empty($time)) 
+        {
+            $id = $time->id;
+            $time = new Time();
+            $time->timeDelete($id);
+        }
 
         //タイムセールの時刻を登録する
         $input = $request->all();
@@ -237,6 +240,30 @@ class ItemController extends Controller
         return redirect(route('itemIndex'));
     }
 
+    /**
+     * タイムセールの時刻の削除
+     *
+     * @param $id
+     * @return View
+     */
+    public function timeDelete($id)
+    {
+        //データの有無を確認
+        if (empty($id)) {
+            \Session::flash('err_mesg', config('message.noData'));
+            return redirect(route('itemIndex'));
+        }
+
+        //DBから削除
+        $time = new Time();
+        $time->timeDelete($id);
+
+        //フラッシュメッセージを表示
+        \Session::flash('err_msg', config('message.delete'));
+
+        //ユーザー情報一覧ページへリダイレクト
+        return redirect(route('itemIndex'));
+    }
 
     /**
      * 各ページのリンク

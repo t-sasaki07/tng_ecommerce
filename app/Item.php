@@ -68,12 +68,28 @@ class Item extends Model
                 'comment' => $input['comment'],
                 'stock' => $input['stock'],
                 'sale' => $input['sale'],
-                'img_1' => $input['img_1'],
-                'img_2' => $input['img_2'],
-                'img_3' => $input['img_3'],
-                'img_4' => $input['img_4'],
             ]);
+
+            //画像の登録処理
+            if (!empty($input['img_1'])) 
+            {
+                $item->img_1 = $input['img_1'];
+            }
+            if (!empty($input['img_2'])) 
+            {
+                $item->img_1 = $input['img_2'];
+            }
+            if (!empty($input['img_3'])) 
+            {
+                $item->img_1 = $input['img_3'];
+            }
+            if (!empty($input['img_4'])) 
+            {
+                $item->img_1 = $input['img_4'];
+            }
+
             $item->save();
+            
         } catch (\Throwable $e) {
             report($e);
             \DB::rollback();

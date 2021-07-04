@@ -51,6 +51,8 @@ Route::get('/itemIndexManage', 'ItemController@index')->name('itemIndex');
 //商品情報一覧ページ
 Route::post('/itemTimeSale', 'Itemcontroller@timesale')->name('timesale');
 //タイムセールの時刻変更
+Route::post('/itemTimeDelete/{id}', 'Itemcontroller@timeDelete')->name('timeDelete');
+//タイムセールの時刻削除
 
 Route::get('/itemRegister', 'ItemController@register');
 Route::post('/itemPost', 'ItemController@itemPost')->name('newPost');

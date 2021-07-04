@@ -14,12 +14,25 @@
     <!-- タイムセール時刻設定 -->
     <form method=post action="{{route('timesale')}}" onSubmit="return checkSubmit()">
     @csrf
+    @if (!empty($time->start))
     <p>開始時間</p>
     <input id="start" type="time" name="start" value="{{ $time->start }}">
     <p>終了時間</p>
     <input id="finish" type="time" name="finish" value="{{ $time->finish }}">
     <button type=submit class="btn btn-primary">設定する</button>
     </form>
+    <form method=post action="{{ route('timeDelete', $time->id) }}" onSubmit="return checkDelete()">
+        @csrf
+        <button type=submit onclick="">時刻を削除する</button>
+    </form>
+    @else
+    <p>開始時間</p>
+    <input id="start" type="time" name="start" value="{{old('start')}}">
+    <p>終了時間</p>
+    <input id="finish" type="time" name="finish" value="{{old('finish')}}">
+    <button type=submit class="btn btn-primary">設定する</button>
+    </form>
+    @endif
     <!-- タイムセール時刻設定ここまで -->
 
     <table class="table-sm">
@@ -51,5 +64,13 @@
         }
     }
 </script>
-
+<script>
+        function checkDelete() {
+            if (window.confirm('タイムセールの時刻を削除してよろしいですか？')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+</script>
 @endsection

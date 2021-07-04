@@ -30,4 +30,5 @@ class Time extends Model
             abort(500);
         }
     }
+    
 }
