@@ -20,7 +20,7 @@ class AdminController extends Controller
     {
         //管理者ログイン済でなければトップページへ遷移させる
         if (Auth::guard('admin')->check() == false ) {
-            return redirect (route('/'));
+            return redirect (route('top'));
         }
 
         //DBからユーザーデータを全て取得
@@ -40,7 +40,7 @@ class AdminController extends Controller
     {
         //管理者ログイン済でなければトップページへ遷移させる
         if (Auth::guard('admin')->check() == false ) {
-            return redirect (route('/'));
+            return redirect (route('top'));
         }
 
         //DBからデータを取得

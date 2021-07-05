@@ -28,7 +28,7 @@ class ItemController extends Controller
     {
         //管理者ログイン済でなければトップページへ遷移させる
         if (Auth::guard('admin')->check() == false ) {
-            return redirect (route('/'));
+            return redirect (route('top'));
         }
 
         //商品情報の取得
@@ -57,7 +57,7 @@ class ItemController extends Controller
     {
         //管理者ログイン済でなければトップページへ遷移させる
         if (Auth::guard('admin')->check() == false ) {
-            return redirect (route('/'));
+            return redirect (route('top'));
         }
 
         return view('itemRegister');
@@ -186,7 +186,7 @@ class ItemController extends Controller
     {
         //管理者ログイン済でなければトップページへ遷移させる
         if (Auth::guard('admin')->check() == false ) {
-            return redirect (route('/'));
+            return redirect (route('top'));
         }
 
         $item = Item::find($id);

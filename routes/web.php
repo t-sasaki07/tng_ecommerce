@@ -15,7 +15,7 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('top');
-});
+})->name('top');
 
 //ユーザー管理
 Route::namespace('User')->prefix('user')->name('user.')->group(function(){
