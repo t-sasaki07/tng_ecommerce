@@ -7,8 +7,10 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Item;
 use App\Time;
+use App\Like;
 use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
+use App\Http\Requests\LikeRequest;
 use App\Http\Requests\TimeSaleRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +44,19 @@ class ItemController extends Controller
         //タイムセール時刻の取得
         $time = Time::first();
 
-        return view('/itemIndexManage', ['items' => $items], ['time'=> $time]);
+        //お気に入り機能
+        $data = [];
+        $like_model = new Like;
+        $like_item = Item::withCount('likes')->first();
+
+        $data = [
+            'items' => $items,
+            'time'=> $time,
+            'like_model' => $like_model,
+            'like_item' => $like_item,
+        ];
+
+        return view('/itemIndexManage', $data);
     }
 
 
@@ -280,6 +294,41 @@ class ItemController extends Controller
         //ユーザー情報一覧ページへリダイレクト
         return redirect(route('itemIndex'));
     }
+
+    /**
+     * お気に入り機能
+     * 
+     * @param $request
+     * @return json
+     */
+    public function ajaxlike(LikeRequest $request) {
+        $id = Auth::guard('user')->user()->id;
+        $item_id = $request->item_id;
+        $like = new Like;
+        $item = Item::findOrFail($item_id);
+
+        //お気に入りに既に追加している場合は、お気に入りを外す（レコードの削除）
+        if ($like->like_exist($id, $item_id)) {
+            $like = Like::where('item_id', $item_id)->where('user_id', $id)->delete();
+        } else {
+            //お気に入りに追加していない場合は、お気に入りへ入れる
+            $like = new Like;
+            $like->item_id = $request->item_id;
+            $like->user_id = Auth::guard('user')->user()->id;
+            $like->save();
+        }
+
+        $itemLikesCount = $item->loadCount('likes')->likes_count;
+
+        $json = [
+            'itemLikesCount' => $itemLikesCount,
+        ];
+
+        return response()->json($json);
+
+    }
+
+
 
     /**
      * 各ページのリンク

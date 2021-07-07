@@ -286,6 +286,12 @@ html, body, .wrapper{
 
 }
 
+.loved i {
+    color: red !important;
+}
+
+
+
 /*
     HEADER TOP SECTION
  */
@@ -1356,6 +1362,7 @@ footer.footer p a{
     color: #FFF;
 }
 
+
     @-webkit-keyframes preloader {
       0% {
         box-shadow: -2em 0 0 #1abc9c, 0 -2em 0 rgba(163, 189, 227, 0.75), 2em 0 0 rgba(163, 189, 227, 0.5), 0 2em 0 rgba(163, 189, 227, 0.25);
@@ -1545,4 +1552,5 @@ footer.footer p a{
         top: 7%;
         z-index: 999;
     }
+    
 }

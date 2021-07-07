@@ -37,6 +37,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    
+
+    //お気に入り機能
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
+
+
+
     /**
      * 投稿削除
      * @param $id

@@ -40,13 +40,35 @@
             <th>商品名</th>
             <th>価格</th>
             <th>在庫数</th>
+            <th>お気に入り</th>
         </tr>
         @foreach($items as $item)
         <tr>
             <th><a href="/itemDetailManage/{{$item->id}}">{{$item->name}}</a></th>
             <th>{{$item->price}}</th>
             <th>{{$item->stock}}</th>
-
+            <th>
+                <!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
+                @if (Auth::guard('user')->check() === false)
+                <i class="fas fa-heart"></i>
+                <!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
+                @elseif ($like_model->like_exist(Auth::guard('user')->user()->id, $item->id))
+                <p class="favorite-marke">
+                <a class="js-like-toggle loved" href="" data-itemid="{{ $item->id }}">
+                    <i class="fas fa-heart"></i>
+                </a>
+                <span class="likeCount">{{$like_item->likes_count}}</span>
+                </p>
+                <!-- ユーザーログインがあり、お気に入りしている表示 -->
+                @else
+                <p class="favorite-marke">
+                <a class="js-like-toggle" href="" data-itemid="{{$item->id}}">
+                    <i class="fas fa-heart"></i>
+                </a>
+                <span class="likeCount">{{$like_item->likes_count}}</span>
+                </p>
+                @endif
+            </th>
         </tr>
         @endforeach
 

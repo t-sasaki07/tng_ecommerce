@@ -45,8 +45,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/itemIndexManage', 'ItemController@index')->name('itemIndex');
 //商品情報一覧ページ
 Route::post('/itemTimeSale', 'Itemcontroller@timesale')->name('timesale');
@@ -68,6 +66,8 @@ Route::post('/itemChangePost/{id}', 'ItemController@itemChange')->name('rePost')
 Route::post('/itemDelete/{id}', 'ItemController@itemDelete')->name('itemDelete');
 //商品情報削除
 
+Route::post('ajaxlike', 'ItemController@ajaxlike')->name('items.ajaxlike');
+//お気に入り機能
 
 
 Route::get('/userDetail', 'AdminController@index')->name('userIndex');
@@ -84,6 +84,4 @@ Route::post('/userDelete/{id}', 'AdminController@delete')->name('userDelete');
 Route::get('/tentative', 'ItemController@tentative');
 //仮リンク
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

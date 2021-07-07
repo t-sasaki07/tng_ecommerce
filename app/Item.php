@@ -28,6 +28,14 @@ class Item extends Model
 
     ];
 
+    public function user() {
+        return $this->belongTo(User::class);
+    }
+
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
+
 
     /**
      * 新規投稿

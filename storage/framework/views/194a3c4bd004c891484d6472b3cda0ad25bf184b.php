@@ -16,7 +16,10 @@
 		<link rel="stylesheet" href="<?php echo e(asset('css/common.css')); ?>">
 
 
-        
+        <!--Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!--Font Awesome5-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"> 
 
         <!-- jQuery cdn -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -36,7 +39,9 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
-<script src="<?php echo e(asset('js/search.js')); ?>"></script>
+
+<script src="<?php echo e(mix('js/_ajaxlike.js')); ?>"></script>
+<script src="<?php echo e(asset('js/app.js')); ?>"></script>
 </body>
 
 </html>
