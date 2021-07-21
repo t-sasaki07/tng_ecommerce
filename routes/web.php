@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ItemController;
+use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
@@ -45,28 +45,46 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 
 Auth::routes();
 
-Route::get('/itemIndexManage', 'ItemController@index')->name('itemIndex');
+
+//ユーザー向け機能
+Route::group(['middleware' => 'auth:user'], function()
+{
+    Route::get('/userItem/detail', 'User\UserController@index')->name('user.detail');
+    Route::get('/userItem/edit', 'User\UserController@edit')->name('user.edit');
+    Route::post('/userItem/edit', 'User\UserController@update')->name('user.update');
+});
+
+//商品一覧画面を表示
+Route::get('/userItem/index', 'User\ItemController@index')->name('item.index');
+
+//商品詳細画面を表示
+Route::get('/userItem/detail/{id}', 'User\ItemController@detail')->name('item.detail');
+
+
+
+//管理者向け機能
+Route::get('/itemIndexManage', 'Admin\ItemController@index')->name('itemIndex');
 //商品情報一覧ページ
-Route::post('/itemTimeSale', 'Itemcontroller@timesale')->name('timesale');
+Route::post('/itemTimeSale', 'Admin\Itemcontroller@timesale')->name('timesale');
 //タイムセールの時刻変更
-Route::post('/itemTimeDelete/{id}', 'Itemcontroller@timeDelete')->name('timeDelete');
+Route::post('/itemTimeDelete/{id}', 'Admin\Itemcontroller@timeDelete')->name('timeDelete');
 //タイムセールの時刻削除
 
-Route::get('/itemRegister', 'ItemController@register');
-Route::post('/itemPost', 'ItemController@itemPost')->name('newPost');
+Route::get('/itemRegister', 'Admin\ItemController@register');
+Route::post('/itemPost', 'Admin\ItemController@itemPost')->name('newPost');
 //商品投稿
 
-Route::get('/itemDetailManage/{id}', 'ItemController@detail');
+Route::get('/itemDetailManage/{id}', 'Admin\ItemController@detail');
 //商品情報詳細ページ
 
-Route::get('/itemChange/{id}', 'ItemController@change')->name('change');
-Route::post('/itemChangePost/{id}', 'ItemController@itemChange')->name('rePost');
+Route::get('/itemChange/{id}', 'Admin\ItemController@change')->name('change');
+Route::post('/itemChangePost/{id}', 'Admin\ItemController@itemChange')->name('rePost');
 //商品情報変更
 
-Route::post('/itemDelete/{id}', 'ItemController@itemDelete')->name('itemDelete');
+Route::post('/itemDelete/{id}', 'Admin\ItemController@itemDelete')->name('itemDelete');
 //商品情報削除
 
-Route::post('ajaxlike', 'ItemController@ajaxlike')->name('items.ajaxlike');
+Route::post('ajaxlike', 'Admin\ItemController@ajaxlike')->name('items.ajaxlike');
 //お気に入り機能
 
 
@@ -81,7 +99,7 @@ Route::post('/userDelete/{id}', 'AdminController@delete')->name('userDelete');
 
 
 
-Route::get('/tentative', 'ItemController@tentative');
+Route::get('/tentative', 'Admin\ItemController@tentative');
 //仮リンク
 
 
