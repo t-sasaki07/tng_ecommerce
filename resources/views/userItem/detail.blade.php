@@ -48,20 +48,52 @@
 									@endif<br>
                   {{$item->comment}}<br>
                   {{$item->stock}}<br>
+									
+									<!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
+									@if (Auth::guard('user')->check() === false)
+										<i class="fas fa-heart"></i>
+										<span class="likeCount">{{$like_item->likes_count}}</span>
+									<!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
+									@elseif ($like_model->like_exist(Auth::guard('user')->user()->id, $item->id))
+										<p class="favorite-marke">
+										<a class="js-like-toggle loved" href="" data-itemid="{{ $item->id }}">
+												<i class="fas fa-heart"></i>
+										</a>
+										<span class="likeCount">{{$like_item->likes_count}}</span>
+										</p>
+									<!-- ユーザーログインがあり、お気に入りしている表示 -->
+									@else
+										<p class="favorite-marke">
+										<a class="js-like-toggle" href="" data-itemid="{{$item->id}}">
+												<i class="fas fa-heart"></i>
+										</a>
+										<span class="likeCount">{{$like_item->likes_count}}</span>
+										</p>
+									@endif
+									<!-- お気に入りここまで -->
+
+									<!-- 画像処理 -->
 									@if (!empty($item->img_1))
 												<img src="{{ asset('storage/'.$item->img_1)}}" alt="" width="100px" height="auto">
-											@endif
+									@endif
+									@if (!empty($item->img_2))
+												<img src="{{ asset('storage/'.$item->img_2)}}" alt="" width="100px" height="auto">
+									@endif
+									@if (!empty($item->img_3))
+												<img src="{{ asset('storage/'.$item->img_3)}}" alt="" width="100px" height="auto">
+									@endif
+									@if (!empty($item->img_4))
+												<img src="{{ asset('storage/'.$item->img_4)}}" alt="" width="100px" height="auto">
+									@endif
+									<!-- 画像処理ここまで -->
+
                   <form action="mycart" method="post">
                     @csrf
                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                     <input type="submit" value="カートに入れる">
                   </form>
                   <br>
-                  <form action="myfavorite" method="post">
-                    @csrf
-                    <input type="hidden" name="item_id" value="{{ $item->id }}">
-                    <input type="submit" value="お気に入り">
-                  </form>
+
 								</div>
 						</div>
 				</div>

@@ -26,8 +26,21 @@ class ItemController extends Controller
         $items = Item::Paginate(4);
         $time = Time::latest()->first();
 
+        //お気に入り機能
+        $data = [];
+        $like_model = new Like;
+        $like_item = Item::withCount('likes')->first();
 
-        return view('userItem/index', ['items'=>$items, 'time'=>$time]);
+        //変数まとめ
+        $data = [
+            'items'=>$items,
+            'time'=>$time,
+            'like_model' => $like_model,
+            'like_item' => $like_item,
+
+        ];
+
+        return view('userItem/index', $data);
     }
 
     /**
@@ -48,6 +61,21 @@ class ItemController extends Controller
         //割引後の値段
         $specialPrice = $price * $sale;
 
-        return view('userItem/detail', ['item'=>$item, 'time'=>$time, '$specialPrice'=>$specialPrice]);
+        //お気に入り機能
+        $data = [];
+        $like_model = new Like;
+        $like_item = Item::withCount('likes')->first();
+
+        //変数まとめ
+        $data = [
+            'item'=>$item,
+            'time'=>$time,
+            'like_model' => $like_model,
+            'like_item' => $like_item,
+            '$specialPrice' => $specialPrice
+
+        ];
+
+        return view('userItem/detail', $data);
     }
 }

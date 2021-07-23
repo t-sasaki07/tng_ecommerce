@@ -51,6 +51,7 @@
                 <!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
                 @if (Auth::guard('user')->check() === false)
                 <i class="fas fa-heart"></i>
+                <span class="likeCount">{{$like_item->likes_count}}</span>
                 <!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
                 @elseif ($like_model->like_exist(Auth::guard('user')->user()->id, $item->id))
                 <p class="favorite-marke">

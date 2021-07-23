@@ -47,20 +47,51 @@
 									<?php endif; ?><br>
                   <?php echo e($item->comment); ?><br>
                   <?php echo e($item->stock); ?><br>
+									<!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
+									<?php if(Auth::guard('user')->check() === false): ?>
+										<i class="fas fa-heart"></i>
+										<span class="likeCount"><?php echo e($like_item->likes_count); ?></span>
+									<!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
+									<?php elseif($like_model->like_exist(Auth::guard('user')->user()->id, $item->id)): ?>
+										<p class="favorite-marke">
+										<a class="js-like-toggle loved" href="" data-itemid="<?php echo e($item->id); ?>">
+												<i class="fas fa-heart"></i>
+										</a>
+										<span class="likeCount"><?php echo e($like_item->likes_count); ?></span>
+										</p>
+									<!-- ユーザーログインがあり、お気に入りしている表示 -->
+									<?php else: ?>
+										<p class="favorite-marke">
+										<a class="js-like-toggle" href="" data-itemid="<?php echo e($item->id); ?>">
+												<i class="fas fa-heart"></i>
+										</a>
+										<span class="likeCount"><?php echo e($like_item->likes_count); ?></span>
+										</p>
+									<?php endif; ?>
+									<!-- お気に入りここまで -->
+
+									<!-- 画像処理 -->
 									<?php if(!empty($item->img_1)): ?>
 												<img src="<?php echo e(asset('storage/'.$item->img_1)); ?>" alt="" width="100px" height="auto">
-											<?php endif; ?>
+									<?php endif; ?>
+									<?php if(!empty($item->img_2)): ?>
+												<img src="<?php echo e(asset('storage/'.$item->img_2)); ?>" alt="" width="100px" height="auto">
+									<?php endif; ?>
+									<?php if(!empty($item->img_3)): ?>
+												<img src="<?php echo e(asset('storage/'.$item->img_3)); ?>" alt="" width="100px" height="auto">
+									<?php endif; ?>
+									<?php if(!empty($item->img_4)): ?>
+												<img src="<?php echo e(asset('storage/'.$item->img_4)); ?>" alt="" width="100px" height="auto">
+									<?php endif; ?>
+									<!-- 画像処理ここまで -->
+
                   <form action="mycart" method="post">
                     <?php echo csrf_field(); ?>
                     <input type="hidden" name="item_id" value="<?php echo e($item->id); ?>">
                     <input type="submit" value="カートに入れる">
                   </form>
                   <br>
-                  <form action="myfavorite" method="post">
-                    <?php echo csrf_field(); ?>
-                    <input type="hidden" name="item_id" value="<?php echo e($item->id); ?>">
-                    <input type="submit" value="お気に入り">
-                  </form>
+
 								</div>
 						</div>
 				</div>
