@@ -36,7 +36,15 @@
 	<div class="container-fluid">
 		<div class="">
 				<div class="mx-auto" style="max-width:1200px">
-						<h1 style="color:#555555; text-align:center; font-size:1.2em; padding:24px 0px; font-weight:bold;">商品一覧</h1>
+						<h1 style="color:#555555; text-align:center; font-size:1.2em; padding:24px 0px; font-weight:bold;">
+							商品一覧
+						</h1>
+						<?php if( ($time->start  < \Carbon\Carbon::now()->format("H:i:s") ) and ( $time->finish > \Carbon\Carbon::now()->format("H:i:s") ) ): ?>
+							<h1 style="color:#FF0000; text-align:center; font-size:1.2em; padding:24px 0px; font-weight:bold;">
+								現在タイムセール中です！！
+							</h1>
+						<?php endif; ?>
+
 						<div class="">
 								<div class="d-flex flex-row flex-wrap">
 										<?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -45,7 +53,11 @@
 											<?php endif; ?>
 											<br>
 											<a href="/userItem/detail/<?php echo e($item->id); ?>"><?php echo e($item->name); ?></a><br>
-											<?php echo e($item->price); ?><br>
+											<?php if( ($time->start  < \Carbon\Carbon::now()->format("H:i:s") ) and ( $time->finish > \Carbon\Carbon::now()->format("H:i:s") ) ): ?>
+												<p style="color:#FF0000";><?php echo e($specialPrice); ?></p>
+											<?php else: ?>
+												<?php echo e($item->price); ?></br>
+											<?php endif; ?>
 											<?php echo e($item->comment); ?><br>
 											<?php echo e($item->stock); ?><br>
 										<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

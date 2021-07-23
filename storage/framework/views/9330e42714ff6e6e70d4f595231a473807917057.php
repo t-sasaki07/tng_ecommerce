@@ -40,7 +40,11 @@
                   <img src="/image/<?php echo e($item->img_1); ?>" alt="" class="img">
                   <br>
                   <a href="/item/<?php echo e($item->id); ?>"><?php echo e($item->name); ?></a><br>
-                  <?php echo e($item->price); ?><br>
+									<?php if( ($time->start  < \Carbon\Carbon::now()->format("H:i:s") ) and ( $time->finish > \Carbon\Carbon::now()->format("H:i:s") ) ): ?>
+												<p style="color:#FF0000";><?php echo e($item->sale / 100 * $item->price); ?></p>
+									<?php else: ?>
+										<?php echo e($item->price); ?></br>
+									<?php endif; ?><br>
                   <?php echo e($item->comment); ?><br>
                   <?php echo e($item->stock); ?><br>
 									<?php if(!empty($item->img_1)): ?>

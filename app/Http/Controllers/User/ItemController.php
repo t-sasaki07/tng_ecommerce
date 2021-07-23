@@ -24,7 +24,10 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::Paginate(4);
-        return view('userItem/index')->with('items',$items);
+        $time = Time::latest()->first();
+
+
+        return view('userItem/index', ['items'=>$items, 'time'=>$time]);
     }
 
     /**
@@ -35,7 +38,16 @@ class ItemController extends Controller
     public function detail($id)
     {
         $item = Item::find($id);
+        $time = Time::latest()->first();
 
-        return view('userItem/detail')->with('item',$item);
+        //タイムセール時の金額算出
+        //定価
+        $price = $item->price;
+        //割引率
+        $sale = $item->sale / 100;
+        //割引後の値段
+        $specialPrice = $price * $sale;
+
+        return view('userItem/detail', ['item'=>$item, 'time'=>$time, '$specialPrice'=>$specialPrice]);
     }
 }

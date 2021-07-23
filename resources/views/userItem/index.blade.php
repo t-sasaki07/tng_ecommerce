@@ -37,7 +37,15 @@
 	<div class="container-fluid">
 		<div class="">
 				<div class="mx-auto" style="max-width:1200px">
-						<h1 style="color:#555555; text-align:center; font-size:1.2em; padding:24px 0px; font-weight:bold;">商品一覧</h1>
+						<h1 style="color:#555555; text-align:center; font-size:1.2em; padding:24px 0px; font-weight:bold;">
+							商品一覧
+						</h1>
+						@if ( ($time->start  < \Carbon\Carbon::now()->format("H:i:s") ) and ( $time->finish > \Carbon\Carbon::now()->format("H:i:s") ) )
+							<h1 style="color:#FF0000; text-align:center; font-size:1.2em; padding:24px 0px; font-weight:bold;">
+								現在タイムセール中です！！
+							</h1>
+						@endif
+
 						<div class="">
 								<div class="d-flex flex-row flex-wrap">
 										@foreach($items as $item)
@@ -46,7 +54,11 @@
 											@endif
 											<br>
 											<a href="/userItem/detail/{{$item->id}}">{{$item->name}}</a><br>
-											{{$item->price}}<br>
+											@if ( ($time->start  < \Carbon\Carbon::now()->format("H:i:s") ) and ( $time->finish > \Carbon\Carbon::now()->format("H:i:s") ) )
+												<p style="color:#FF0000";>{{ $specialPrice }}</p>
+											@else
+												{{$item->price}}</br>
+											@endif
 											{{$item->comment}}<br>
 											{{$item->stock}}<br>
 										@endforeach

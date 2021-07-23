@@ -41,7 +41,11 @@
                   <img src="/image/{{$item->img_1}}" alt="" class="img">
                   <br>
                   <a href="/item/{{$item->id}}">{{$item->name}}</a><br>
-                  {{$item->price}}<br>
+									@if ( ($time->start  < \Carbon\Carbon::now()->format("H:i:s") ) and ( $time->finish > \Carbon\Carbon::now()->format("H:i:s") ) )
+												<p style="color:#FF0000";>{{ $item->sale / 100 * $item->price }}</p>
+									@else
+										{{$item->price}}</br>
+									@endif<br>
                   {{$item->comment}}<br>
                   {{$item->stock}}<br>
 									@if (!empty($item->img_1))
