@@ -49,9 +49,9 @@ Auth::routes();
 //ユーザー向け機能
 Route::group(['middleware' => 'auth:user'], function()
 {
-    Route::get('/userItem/detail', 'User\UserController@index')->name('user.detail');
-    Route::get('/userItem/edit', 'User\UserController@edit')->name('user.edit');
-    Route::post('/userItem/edit', 'User\UserController@update')->name('user.update');
+    Route::get('/user/detail', 'User\UserController@index')->name('user.detail');
+    Route::get('/user/edit', 'User\UserController@edit')->name('user.edit');
+    Route::post('/user/edit', 'User\UserController@update')->name('user.update');
 });
 
 //商品一覧画面を表示

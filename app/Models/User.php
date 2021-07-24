@@ -16,7 +16,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 
+        'postal_code',
+        'prefecture',
+        'city',
+        'block',
+        'buillding',
+        'phone',
+        'email',
     ];
 
     /**
@@ -62,4 +69,38 @@ class User extends Authenticatable
             abort(500);
         }
     }
+
+        /**
+     * 投稿編集
+     * @param $input
+     *
+     */
+    public function upNewData($input)
+    { 
+        \DB::beginTransaction();
+        try {
+            // 登録
+            $user = User::find($input['id']);
+            $user->fill([
+                'name' => $input['name'],
+                'postal_code'=> $input['postal_code'],
+                'prefecture'=> $input['prefecture'],
+                'city' => $input['city'],
+                'block' => $input['block'],
+                'buillding'=> $input['buillding'],
+                'phone'=> $input['phone'],
+                'email'=>$input['email'], 
+            ]);
+
+            $user->save();
+            
+        } catch (\Throwable $e) {
+            report($e);
+            \DB::rollback();
+            abort(500);
+        }
+        \DB::commit();
+    }
+
+
 }
