@@ -5,7 +5,7 @@
             <div  class="col-md-6">
                 <div class="header-top-content">
                     <ul class="nav nav-pills navbar-left">
-                        <li><a href="#"><i class="pe-7s-call"></i><span>STORE TOP</span></a></li>
+                        <li><a href="{{ url('/') }}"><i class="pe-7s-call"></i><span>STORE TOP</span></a></li>
                         <li><a href=""><i class="fas fa-phone"></i><span>123-123456789</span></a></li>
                         <li><a href=""><i class="pe-7s-mail"></i><span> info@mart.com</span></a></li>
                     </ul>
@@ -14,8 +14,8 @@
             <div  class="col-md-6">
                 <div class="header-top-menu">
                     <ul class="nav nav-pills navbar-right">
-                        @if(Auth::check())
-                            <li><a href="{{ route('userDetail') }}">My Page</a></li>
+                        @if(Auth::guard('user')->check())
+                            <li><a href="{{ route('mypage') }}">My Page</a></li>
                             <li><a href="#">Cart</a></li>
                             <li><a href="{{ route('userLogout') }}">Logout</a></li>
                         @endif

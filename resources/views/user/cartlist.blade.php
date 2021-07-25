@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 
@@ -37,7 +37,6 @@
                         <tr class="text-center">
                             <th class="border-bottom border-dark">No</th>
                             <th class="border-bottom border-dark">商品名</th>
-                            <th class="border-bottom border-dark">商品カテゴリ</th>
                             <th class="border-bottom border-dark">値段</th>
                             <th class="border-bottom border-dark">個数</th>
                             <th class="border-bottom border-dark">小計</th>
@@ -48,10 +47,7 @@
                                 <tr class="text-center">
                                     <th class="align-middle">{{ $key += 1 }}</th>
                                     <td class="align-middle">
-                                        {{ $data['product_name'] }}
-                                    </td>
-                                    <td class="align-middle">
-                                        {{ $data['category_name'] }}
+                                        {{ $data['item_name'] }}
                                     </td>
                                     <td class="align-middle">
                                         ¥{{ number_format($data['price']) }} 円
@@ -67,10 +63,10 @@
                                     </td>
 
                                     <td class="border-0 align-middle">
-                                        {!! Form::open(['route' => ['itemRemove', 'method' => 'post', $data['session_products_id']]]) !!}
-                                            {{ Form::submit('削除', ['name' => 'delete_products_id', 'class' => 'btn btn-danger']) }}
-                                            {{ Form::hidden('product_id', $data['session_products_id']) }}
-                                            {{ Form::hidden('product_quantity', $data['session_quantity']) }}
+                                        {!! Form::open(['route' => ['itemRemove', 'method' => 'post', $data['session_items_id']]]) !!}
+                                            {{ Form::submit('削除', ['name' => 'delete_items_id', 'class' => 'btn btn-danger']) }}
+                                            {{ Form::hidden('item_id', $data['session_items_id']) }}
+                                            {{ Form::hidden('item_quantity', $data['session_quantity']) }}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>
@@ -94,14 +90,14 @@
                         <tr class="text-right">
                             <th class="border-0"></th>
                             <td class="border-0">
-                                <a class="btn btn-success" href="{{ route('product_search') }}" role="button">
+                                <a class="btn btn-success" href="{{ route('item.index') }}" role="button">
                                     買い物を続ける
                                 </a>
                             </td>
                             <td class="border-0"></td>
                             <td class="border-0"></td>
                             <td class="border-0">
-                                {!! Form::open(['route' => ['orderFinalize', 'method' => 'post', $data['session_products_id']]]) !!}
+                                {!! Form::open(['route' => ['orderFinalize', 'method' => 'post', $data['session_items_id']]]) !!}
                                     {{ Form::submit('注文を確定する', ['name' => 'orderFinalize', 'class' => 'btn btn-primary']) }}
                                 {!! Form::close() !!}
                             </td>

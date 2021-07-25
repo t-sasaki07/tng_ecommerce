@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\User;
+use App\Models\Item;
+use App\Models\Like;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,14 +26,14 @@ class UserController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    // お気に入り一覧
+    public function likeIndex()
     {
-        //
+        $likes = User::where('id', Auth::user())
+            ->with(['likes']);
+
+            dd($likes);
+            return view('user.like_list')->with($likes);
     }
 
     /**
@@ -76,7 +79,7 @@ class UserController extends Controller
         \Session::flash('err_msg', config('message.complete'));
 
         //リダイレクト
-        return redirect(route('userDetail'));
+        return redirect(route('mypage'));
     }
 
     /**

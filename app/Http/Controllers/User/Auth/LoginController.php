@@ -5,11 +5,9 @@ namespace App\Http\Controllers\User\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
-// 下記を追記する
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// 上記までを追記する
+
 
 class LoginController extends Controller
 {
@@ -51,7 +49,7 @@ class LoginController extends Controller
     }
 
     // ログイン画面
-    public function showAdminLoginForm()
+    public function showLoginForm()
     {
         return view('user.auth.login');
     }
@@ -59,7 +57,7 @@ class LoginController extends Controller
     // ログアウト処理
     public function logout(Request $request)
     {
-        Auth::guard('user')->logout;
+        Auth::guard('user')->logout();
 
         return $this->loggedOut($request);
     }

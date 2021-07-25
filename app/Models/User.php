@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Item;
+use App\Models\Like;
 
 class User extends Authenticatable
 {
@@ -45,4 +47,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // public function items()
+    // {
+    //     return $this->hasMany(Item::class);
+    // }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

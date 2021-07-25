@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Like;
 
 class Item extends Model
 {
@@ -14,18 +16,29 @@ class Item extends Model
      */
     protected $table = 'items';
 
-    protected $fiilable = [
+    protected $fillable = [
+        'id',
         'name',
         'price',
         'comment',
         'stock',
-        'time_sale',
+        'sale',
         'img_1',
         'img_2',
         'img_3',
         'img_4',
+
     ];
-    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 
     /**
      * 新規投稿
@@ -34,23 +47,26 @@ class Item extends Model
      */
     public function newSet($input)
     {
-    \DB::beginTransaction();
+        \DB::beginTransaction();
         try {
             // 登録
             Item::create($input);
+            \DB::commit();
         } catch (\Throwable $e) {
+            report($e);
             \DB::rollback();
-            abort(50);
+            abort(500);
+            session()->flash('err_msg', '更新が失敗しました');
+
         }
-        \DB::commit();
     }
 
 
     /**
-      * 投稿編集
-      * @param $inputs
-      *
-      */
+     * 投稿編集
+     * @param $inputs
+     *
+     */
     public function upNewDate($inputs)
     {
 
@@ -63,7 +79,6 @@ class Item extends Model
                 'price' => $inputs['price'],
                 'comment' => $inputs['comment'],
                 'stock' => $inputs['stock'],
-                'time_sale' => $inputs['time_sale'],
                 'img_1' => $inputs['img_1'],
                 'img_2' => $inputs['img_2'],
                 'img_3' => $inputs['img_3'],
@@ -78,16 +93,16 @@ class Item extends Model
     }
 
     /**
-      * 投稿削除
-      * @param $id
-      *
-      */
+     * 投稿削除
+     * @param $id
+     *
+     */
     public function dataDelete($id)
     {
 
 
         try {
-             // 削除
+            // 削除
             Item::destroy($id);
         } catch (\Throwable $e) {
             abort(500);

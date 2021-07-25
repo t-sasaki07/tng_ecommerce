@@ -51,7 +51,7 @@ class LoginController extends Controller
     }
 
     // ログイン画面
-    public function showAdminLoginForm()
+    public function showLoginForm()
     {
         return view('admin.auth.login');
     }
@@ -59,7 +59,7 @@ class LoginController extends Controller
     // ログアウト処理
     public function logout(Request $request)
     {
-        Auth::guard('admin')->logout;
+        Auth::guard('admin')->logout();
 
         return $this->loggedOut($request);
     }

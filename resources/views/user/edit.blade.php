@@ -120,7 +120,7 @@
                         </div>
                     </div>
                     <div class="mt-5">
-                        <a class='btn btn-secondary' href="{{ route('userDetail') }}">
+                        <a class='btn btn-secondary' href="{{ route('mypage') }}">
                             キャンセル
                         </a>
                         <button type="submit" class="user-btn">変更</button>
