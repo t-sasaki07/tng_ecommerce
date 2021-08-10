@@ -3,9 +3,9 @@
 @section('content')
 
 
-<a href="{{ url('/itemIndexManage') }}">商品一覧</a>
-<a href="{{ url('/itemRegister') }}">商品登録</a>
-<a href="{{ url('/userDetail') }}">ユーザー一覧</a>
+<a href="{{ url('/admin/item_index') }}">商品一覧</a>
+<a href="{{ url('/admin/item_register') }}">商品登録</a>
+<a href="{{ url('/admin/user_index') }}">ユーザー一覧</a>
 
 
 @if(empty($time))

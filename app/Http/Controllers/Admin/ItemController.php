@@ -37,7 +37,7 @@ class ItemController extends Controller
         $items = Item::all();
         if (is_null($items)) {
             \Session::flash('err_msg', config('message.noData'));
-            return redirect(route('itemIndex'));
+            return redirect(route('admin.item.index'));
         }
         $items = DB::table('items')->paginate(15);
 
@@ -56,7 +56,7 @@ class ItemController extends Controller
             'like_item' => $like_item,
         ];
 
-        return view('/itemIndexManage', $data);
+        return view('/admin/item_index', $data);
     }
 
 
@@ -74,7 +74,7 @@ class ItemController extends Controller
             return redirect (route('top'));
         }
 
-        return view('itemRegister');
+        return view('admin/item_register');
     }
 
 
@@ -128,7 +128,7 @@ class ItemController extends Controller
         \Session::flash('err_msg', config('message.complete'));
 
         //商品情報一覧ページへリダイレクト
-        return redirect(route('itemIndex'));
+        return redirect(route('admin.item.index'));
     }
 
 
@@ -143,7 +143,7 @@ class ItemController extends Controller
     {
         $items = Item::find($id);
 
-        return view('itemChange', ['items' => $items]);
+        return view('admin/item_change', ['items' => $items]);
     }
 
     /**
@@ -186,7 +186,7 @@ class ItemController extends Controller
         \Session::flash('err_msg', config('mssage.complete'));
 
         //商品情報一覧ページへリダイレクト
-        return redirect(route('itemIndex'));
+        return redirect(route('admin.item.index'));
     }
 
 
@@ -207,10 +207,10 @@ class ItemController extends Controller
 
         if (is_null($item)) {
             \Session::flash('err_msg', config('message.noData'));
-            return redirect(route('itemIndex'));
+            return redirect(route('admin.item.index'));
         }
 
-        return view('itemDetailManage', ['item' => $item]);
+        return view('admin/item_detail', ['item' => $item]);
     }
 
     /**
@@ -224,7 +224,7 @@ class ItemController extends Controller
         //データの有無を確認
         if (empty($id)) {
             \Session::flash('err_mesg', config('message.noData'));
-            return redirect(route('itemIndex'));
+            return redirect(route('admin.item.index'));
         }
 
         //DBから削除
@@ -235,7 +235,7 @@ class ItemController extends Controller
         \Session::flash('err_msg', config('message.delete'));
 
         //ユーザー情報一覧ページへリダイレクト
-        return redirect(route('itemIndex'));
+        return redirect(route('admin.item.index'));
     }
 
 
@@ -267,7 +267,7 @@ class ItemController extends Controller
             abort(500);
             session()->flash('err_msg', '更新が失敗しました');
         }
-        return redirect(route('itemIndex'));
+        return redirect(route('admin.item.index'));
     }
 
     /**
@@ -281,7 +281,7 @@ class ItemController extends Controller
         //データの有無を確認
         if (empty($id)) {
             \Session::flash('err_mesg', config('message.noData'));
-            return redirect(route('itemIndex'));
+            return redirect(route('admin.item.index'));
         }
 
         //DBから削除
@@ -292,7 +292,7 @@ class ItemController extends Controller
         \Session::flash('err_msg', config('message.delete'));
 
         //ユーザー情報一覧ページへリダイレクト
-        return redirect(route('itemIndex'));
+        return redirect(route('admin.item.index'));
     }
 
     /**

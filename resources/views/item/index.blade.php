@@ -53,7 +53,7 @@
 												<img src="{{ asset('storage/'.$item->img_1)}}" alt="" width="100px" height="auto">
 											@endif
 											<br>
-											<a href="/userItem/detail/{{$item->id}}">{{$item->name}}</a><br>
+											<a href="/item/detail/{{$item->id}}">{{$item->name}}</a><br>
 											@if ( ($time->start  < \Carbon\Carbon::now()->format("H:i:s") ) and ( $time->finish > \Carbon\Carbon::now()->format("H:i:s") ) )
 												<p style="color:#FF0000";>{{ $specialPrice }}</p>
 											@else

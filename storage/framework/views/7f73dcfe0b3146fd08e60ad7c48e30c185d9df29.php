@@ -2,9 +2,9 @@
 <?php $__env->startSection('content'); ?>
 
 
-<a href="<?php echo e(url('/itemIndexManage')); ?>">商品一覧</a>
-<a href="<?php echo e(url('/itemRegister')); ?>">商品登録</a>
-<a href="<?php echo e(url('/userDetail')); ?>">ユーザー一覧</a>
+<a href="<?php echo e(url('/admin/item_index')); ?>">商品一覧</a>
+<a href="<?php echo e(url('/admin/item_register')); ?>">商品登録</a>
+<a href="<?php echo e(url('/admin/user_index')); ?>">ユーザー一覧</a>
 
 
 <?php if(empty($time)): ?>

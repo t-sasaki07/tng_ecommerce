@@ -10,7 +10,7 @@
     <img src="<?php echo e(asset('storage/'.$item->img_2)); ?>" alt="" width="100px" height="auto">
     <img src="<?php echo e(asset('storage/'.$item->img_3)); ?>" alt="" width="100px" height="auto">
     <img src="<?php echo e(asset('storage/'.$item->img_4)); ?>" alt="" width="100px" height="auto">
-    <a href="/item_change/<?php echo e($item->id ); ?>">変更する</a>
+    <a href="/admin/item_change/<?php echo e($item->id ); ?>">変更する</a>
     <form method=post action="<?php echo e(route('itemDelete', $item->id)); ?>" onSubmit="return checkDelete()">
         <?php echo csrf_field(); ?>
         <button type=submit onclick="">削除する</button>
@@ -26,4 +26,4 @@
         }
 </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/MAMP/htdocs/tng_ec_sum/resources/views/item_detail_manage.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/MAMP/htdocs/tng_ec_sum/resources/views/admin/item_detail.blade.php ENDPATH**/ ?>

@@ -44,7 +44,7 @@
         </tr>
         @foreach($items as $item)
         <tr>
-            <th><a href="/itemDetailManage/{{$item->id}}">{{$item->name}}</a></th>
+            <th><a href="/admin/item_detail/{{$item->id}}">{{$item->name}}</a></th>
             <th>{{$item->price}}</th>
             <th>{{$item->stock}}</th>
             <th>

@@ -40,7 +40,7 @@ class ItemController extends Controller
 
         ];
 
-        return view('userItem/index', $data);
+        return view('item/index', $data);
     }
 
     /**
@@ -76,6 +76,6 @@ class ItemController extends Controller
 
         ];
 
-        return view('userItem/detail', $data);
+        return view('item/detail', $data);
     }
 }

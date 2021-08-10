@@ -52,52 +52,60 @@ Route::group(['middleware' => 'auth:user'], function()
     Route::get('/user/detail', 'User\UserController@index')->name('user.detail');
     Route::get('/user/edit', 'User\UserController@edit')->name('user.edit');
     Route::post('/user/edit', 'User\UserController@update')->name('user.update');
+
+    // ログアウト機能
+    Route::get('/user/logout', 'User\Auth\LoginController@logout')->name('userLogout');
 });
 
 //商品一覧画面を表示
-Route::get('/userItem/index', 'User\ItemController@index')->name('item.index');
+Route::get('/item/index', 'User\ItemController@index')->name('item.index');
 
 //商品詳細画面を表示
-Route::get('/userItem/detail/{id}', 'User\ItemController@detail')->name('item.detail');
+Route::get('/item/detail/{id}', 'User\ItemController@detail')->name('item.detail');
 
 
 
 //管理者向け機能
-Route::get('/itemIndexManage', 'Admin\ItemController@index')->name('itemIndex');
-//商品情報一覧ページ
-Route::post('/itemTimeSale', 'Admin\Itemcontroller@timesale')->name('timesale');
-//タイムセールの時刻変更
-Route::post('/itemTimeDelete/{id}', 'Admin\Itemcontroller@timeDelete')->name('timeDelete');
-//タイムセールの時刻削除
+//ユーザー向け機能
+Route::group(['middleware' => 'auth:user'], function() {
+    // ログアウト機能
+    Route::get('/admin/logout', 'Admin\Auth\LoginController@logout')->name('adminLogout');
 
-Route::get('/itemRegister', 'Admin\ItemController@register');
-Route::post('/itemPost', 'Admin\ItemController@itemPost')->name('newPost');
-//商品投稿
+    Route::get('/admin/item_index', 'Admin\ItemController@index')->name('admin.item.index');
+    //商品情報一覧ページ
+    Route::post('/itemTimeSale', 'Admin\Itemcontroller@timesale')->name('timesale');
+    //タイムセールの時刻変更
+    Route::post('/itemTimeDelete/{id}', 'Admin\Itemcontroller@timeDelete')->name('timeDelete');
+    //タイムセールの時刻削除
 
-Route::get('/itemDetailManage/{id}', 'Admin\ItemController@detail');
-//商品情報詳細ページ
+    Route::get('/admin/item_register', 'Admin\ItemController@register');
+    Route::post('/itemPost', 'Admin\ItemController@itemPost')->name('newPost');
+    //商品投稿
 
-Route::get('/itemChange/{id}', 'Admin\ItemController@change')->name('change');
-Route::post('/itemChangePost/{id}', 'Admin\ItemController@itemChange')->name('rePost');
-//商品情報変更
+    Route::get('/admin/item_detail/{id}', 'Admin\ItemController@detail');
+    //商品情報詳細ページ
 
-Route::post('/itemDelete/{id}', 'Admin\ItemController@itemDelete')->name('itemDelete');
-//商品情報削除
+    Route::get('/admin/item_change/{id}', 'Admin\ItemController@change')->name('item.change');
+    Route::post('/admin/itemchangePost/{id}', 'Admin\ItemController@itemChange')->name('rePost');
+    //商品情報変更
 
-Route::post('ajaxlike', 'Admin\ItemController@ajaxlike')->name('items.ajaxlike');
-//お気に入り機能
+    Route::post('/itemDelete/{id}', 'Admin\ItemController@itemDelete')->name('itemDelete');
+    //商品情報削除
 
-
-Route::get('/userDetail', 'AdminController@index')->name('userIndex');
-//ユーザー情報一覧ページ
-
-Route::get('/userDetail/{id}', 'AdminController@detail');
-//ユーザー情報詳細ページ
-
-Route::post('/userDelete/{id}', 'AdminController@delete')->name('userDelete');
-//ユーザーデータ削除
+    Route::post('ajaxlike', 'Admin\ItemController@ajaxlike')->name('items.ajaxlike');
+    //お気に入り機能
 
 
+    Route::get('/admin/user_index', 'AdminController@index')->name('user.index');
+    //ユーザー情報一覧ページ
+
+    Route::get('/admin/user_detail/{id}', 'AdminController@detail');
+    //ユーザー情報詳細ページ
+
+    Route::post('/userDelete/{id}', 'AdminController@delete')->name('userDelete');
+    //ユーザーデータ削除
+
+});
 
 Route::get('/tentative', 'Admin\ItemController@tentative');
 //仮リンク

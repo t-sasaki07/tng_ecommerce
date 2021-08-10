@@ -11,7 +11,7 @@
     <img src="{{ asset('storage/'.$item->img_2)}}" alt="" width="100px" height="auto">
     <img src="{{ asset('storage/'.$item->img_3)}}" alt="" width="100px" height="auto">
     <img src="{{ asset('storage/'.$item->img_4)}}" alt="" width="100px" height="auto">
-    <a href="/itemChange/{{ $item->id }}">変更する</a>
+    <a href="/admin/item_change/{{ $item->id }}">変更する</a>
     <form method=post action="{{ route('itemDelete', $item->id) }}" onSubmit="return checkDelete()">
         @csrf
         <button type=submit onclick="">削除する</button>

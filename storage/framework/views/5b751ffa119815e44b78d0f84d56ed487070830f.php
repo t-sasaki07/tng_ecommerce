@@ -44,7 +44,7 @@
         </tr>
         <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
-            <th><a href="/item_detail/<?php echo e($item->id); ?>"><?php echo e($item->name); ?></a></th>
+            <th><a href="/admin/item_detail/<?php echo e($item->id); ?>"><?php echo e($item->name); ?></a></th>
             <th><?php echo e($item->price); ?></th>
             <th><?php echo e($item->stock); ?></th>
             <th>
@@ -98,4 +98,4 @@
 </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/MAMP/htdocs/tng_ec_sum/resources/views//itemIndexManage.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/MAMP/htdocs/tng_ec_sum/resources/views//admin/item_index.blade.php ENDPATH**/ ?>

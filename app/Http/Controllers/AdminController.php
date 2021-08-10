@@ -26,7 +26,7 @@ class AdminController extends Controller
         //DBからユーザーデータを全て取得
         $users = User::all();
 
-        return view('userIndex', ['users' => $users]);
+        return view('admin/user_index', ['users' => $users]);
     }
 
 
@@ -49,10 +49,10 @@ class AdminController extends Controller
         // データの有無の確認
         if (is_null($user)) {
             \Session::flash('err_msg', config('message.noData'));
-            return redirect(route('userIndex'));
+            return redirect(route('admin/user_index'));
 }
 
-        return view('userDetail', ['user' => $user]);
+        return view('user_detail', ['user' => $user]);
     }
 
     /**
@@ -66,7 +66,7 @@ class AdminController extends Controller
         //データの有無を確認
         if(empty($id)) {
             \Session::flash('err_mesg', config('message.noData'));
-            return redirect(route('userIndex'));
+            return redirect(route('admin/user_index'));
         }
 
         //DBから削除
@@ -77,7 +77,7 @@ class AdminController extends Controller
         \Session::flash('err_msg', config('message.delete'));
 
         //ユーザー情報一覧ページへリダイレクト
-        return redirect(route('userIndex'));
+        return redirect(route('admin/user_index'));
     }
 
 }

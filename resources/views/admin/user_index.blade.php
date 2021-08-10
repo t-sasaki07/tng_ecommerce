@@ -10,7 +10,7 @@
         </tr>
         @foreach($users as $user)
         <tr>
-            <th><a href="/userDetail/{{$user->id}}">{{$user->name}}</a></th>
+            <th><a href="/admin/user_detail/{{$user->id}}">{{$user->name}}</a></th>
             <th>{{$user->email}}</th>
             <th>
                 <form method=post action="{{ route('userDelete', $user->id) }}" onSubmit="return checkDelete()">
