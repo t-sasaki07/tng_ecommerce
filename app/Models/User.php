@@ -87,11 +87,11 @@ class User extends Authenticatable
                 'prefecture'=> $input['prefecture'],
                 'city' => $input['city'],
                 'block' => $input['block'],
-                'buillding'=> $input['buillding'],
+                'building'=> $input['building'],
                 'phone'=> $input['phone'],
                 'email'=>$input['email'], 
             ]);
-
+            
             $user->save();
             
         } catch (\Throwable $e) {
@@ -101,6 +101,5 @@ class User extends Authenticatable
         }
         \DB::commit();
     }
-
 
 }

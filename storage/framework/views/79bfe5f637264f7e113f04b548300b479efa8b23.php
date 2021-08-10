@@ -1,19 +1,18 @@
-@extends('layout')
-@section('title', 'ユーザー登録内容')
-@section('content')
+<?php $__env->startSection('title', 'ユーザー登録内容'); ?>
+<?php $__env->startSection('content'); ?>
 <div class="container m-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
             <div class="card-header">ユーザー登録内容の変更</div>
             <div class="card-body">
-                <form method="POST" action="{{ action('User\UserController@update') }}">
+                <form method="POST" action="<?php echo e(action('User\UserController@update')); ?>">
                     <div class="form-group">
                         <label for="name">
                             名前
                         </label>
                         <div>
-                            <input type="text" name="name" class="form-control" value="{{ $user->name }}">
+                            <input type="text" name="name" class="form-control" value="<?php echo e($user->name); ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -21,7 +20,7 @@
                             E-Mail
                         </label>
                         <div>
-                            <input type="text" name="email" class="form-control" value="{{ $user->email }}">
+                            <input type="text" name="email" class="form-control" value="<?php echo e($user->email); ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -29,7 +28,7 @@
                             郵便番号
                         </label>
                         <div>
-                            <input type="text" name="postal_code" class="form-control" value="{{ $user->postal_code }}">
+                            <input type="text" name="postal_code" class="form-control" value="<?php echo e($user->postal_code); ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -37,7 +36,7 @@
                             都道府県
                         </label>
                         <div>
-                            <input type="text" name="prefecture" class="form-control" value="{{ $user->prefecture }}">
+                            <input type="text" name="prefecture" class="form-control" value="<?php echo e($user->prefecture); ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -45,7 +44,7 @@
                             市区町村
                         </label>
                         <div>
-                            <input type="text" name="city" class="form-control" value="{{ $user->city }}">
+                            <input type="text" name="city" class="form-control" value="<?php echo e($user->city); ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -53,7 +52,7 @@
                             番地
                         </label>
                         <div>
-                            <input type="text" name="block" class="form-control" value="{{ $user->block }}">
+                            <input type="text" name="block" class="form-control" value="<?php echo e($user->block); ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -61,7 +60,7 @@
                             建物名
                         </label>
                         <div>
-                            <input type="text" name="building" class="form-control" value="{{ $user->building }}">
+                            <input type="text" name="building" class="form-control" value="<?php echo e($user->building); ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -69,19 +68,22 @@
                             電話番号
                         </label>
                         <div>
-                            <input type="text" name="phone" class="form-control" value="{{ $user->phone }}">
+                            <input type="text" name="phone" class="form-control" value="<?php echo e($user->phone); ?>">
                         </div>
                     </div>
-                    <input type="hidden" name="id" id="id" value="{{$user->id}}">
-                    @if ($errors->has('user_id'))
-                    {{$errors->first('user_id')}}
-                    @endif
+                    <input type="hidden" name="id" id="id" value="<?php echo e($user->id); ?>">
+                    <?php if($errors->has('user_id')): ?>
+                    <?php echo e($errors->first('user_id')); ?>
+
+                    <?php endif; ?>
                     <button type="submit" class="user-btn">変更</button>
-                    {{ csrf_field() }}
+                    <?php echo e(csrf_field()); ?>
+
                 </form>
             </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/MAMP/htdocs/tng_ec_sum/resources/views/user/edit.blade.php ENDPATH**/ ?>

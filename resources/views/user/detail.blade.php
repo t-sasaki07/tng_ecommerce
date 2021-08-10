@@ -8,6 +8,7 @@
             <div class="card-header">ユーザー登録内容</div>
             <div class="card-body">
                 <div class="form-group">
+
                     <label for="name">
                         名前
                     </label>
@@ -71,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ action('User\UserController@edit') }}"><button class="user-btn">ユーザー登録内容の編集</button></a>
+                <a href="{{ action('User\UserController@edit') }}"><button class="user-btn">ユーザー登録内容の編集</button>
             </div>
         </div>
         </div>

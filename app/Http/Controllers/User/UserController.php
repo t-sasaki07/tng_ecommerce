@@ -4,9 +4,10 @@ namespace App\Http\Controllers\User;
 
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\UserSaleRequest;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -54,14 +55,8 @@ class UserController extends Controller
      */
     public function edit(UserRequest $request)
     {
-        // userデータの取得
-        $input = $request->all();
-
-        //DBへ登録する
-        $user = new User();
-        $user->upNewData($input);
-
-        return view('user.detail', ['user' => $user ]);
+        //
+        return view(('user.edit'), ['user' => Auth::user() ]);
 
     }
 
@@ -75,15 +70,15 @@ class UserController extends Controller
     public function update(Request $request)
     {
         //
-        $user_form = $request->all();
+        $input = $request->all();
 
-        $userId = Auth::guard('user')->user()->id;
-        $user = Auth::guard('user')->user()->find($userId);
+        //$userId = Auth::guard('user')->user()->id;
+        //$user = Auth::guard('user')->user()->find($userId);
 
-        //不要な_tokenの削除
-        unset($user_form['_token']);
-        //保存
-        $user->fill($user_form)->save();
+        //DBへ登録する
+        $user = new User();
+        $user->upNewData($input);
+
         //リダイレクト
         return redirect('user/detail');
     }
@@ -96,6 +91,20 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //データの有無を確認
+        if (empty($id)) {
+            \Session::flash('err_mesg', config('message.noData'));
+            return redirect(route('user/detail'));
+        }
+
+        //DBから削除
+        $item = new User();
+        $item->dataDelete($id);
+
+        //フラッシュメッセージを表示
+        \Session::flash('err_msg', config('message.delete'));
+
+        //ユーザー情報一覧ページへリダイレクト
+        return redirect(route('user/detail'));
     }
 }
