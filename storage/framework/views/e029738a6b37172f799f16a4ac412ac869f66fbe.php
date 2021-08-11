@@ -53,4 +53,4 @@
     </body>
 
 </html>
-<?php /**PATH /Applications/MAMP/htdocs/tng_ec_sum/resources/views/layout.blade.php ENDPATH**/ ?>
+<?php /**PATH /Applications/MAMP/htdocs/tng_ec_sum/resources/views/layouts/layout.blade.php ENDPATH**/ ?>

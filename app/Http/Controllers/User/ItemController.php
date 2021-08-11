@@ -52,6 +52,7 @@ class ItemController extends Controller
     {
         $item = Item::find($id);
         $time = Time::latest()->first();
+        $user = Auth::guard('user')->user();
 
         //タイムセール時の金額算出
         //定価
@@ -70,6 +71,7 @@ class ItemController extends Controller
         $data = [
             'item'=>$item,
             'time'=>$time,
+            'user'=>$user,
             'like_model' => $like_model,
             'like_item' => $like_item,
             '$specialPrice' => $specialPrice

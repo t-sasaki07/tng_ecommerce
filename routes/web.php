@@ -53,6 +53,16 @@ Route::group(['middleware' => 'auth:user'], function()
     Route::get('/user/edit', 'User\UserController@edit')->name('user.edit');
     Route::post('/user/edit', 'User\UserController@update')->name('user.update');
 
+
+    Route::view('/no-cartList', 'users/no_cart_list')->name('noCartlist');
+    Route::view('/purchaseCompleted', 'items/purchase_completed');
+
+    Route::resource('cartlist', 'User\CartController', ['only' => ['index']]);
+    Route::post('item/addCart/cartListRemove', 'User\CartController@remove')->name('itemRemove');
+    Route::post('item/addCart','User\CartController@addCart')->name('addcart.post');
+    Route::post('item/addCart/orderFinalize','User\CartController@store')->name('orderFinalize');
+
+
     // ログアウト機能
     Route::get('/user/logout', 'User\Auth\LoginController@logout')->name('userLogout');
 });
@@ -66,8 +76,7 @@ Route::get('/item/detail/{id}', 'User\ItemController@detail')->name('item.detail
 
 
 //管理者向け機能
-//ユーザー向け機能
-Route::group(['middleware' => 'auth:user'], function() {
+Route::group(['middleware' => 'auth:admin'], function() {
     // ログアウト機能
     Route::get('/admin/logout', 'Admin\Auth\LoginController@logout')->name('adminLogout');
 
