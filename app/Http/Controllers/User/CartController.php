@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\Like;
-use App\Order;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -149,7 +150,7 @@ class CartController extends Controller
         $now = Carbon::now();
 
         //オブジェクト生成
-        $order = new \App\Order;
+        $order = new \App\Models\Order;
         //指定値をオブジェクト代入
         $order->user_id = Auth::user()->id;
         $order->order_date = $now;
@@ -165,7 +166,7 @@ class CartController extends Controller
         //注文詳細情報保存を注文数分繰り返す １回のリクエストを複数カラムに分けDB登録
         foreach ($cartData as $data) {
             //注文詳細情報に関わるオブジェクト生成
-            $orderDetail = new \App\OrderDetail;
+            $orderDetail = new \App\Models\OrderDetail;
             $orderDetail->item_id = $data['session_items_id'];
             $orderDetail->order_id = $savedOrderId[0];
             $orderDetail->shipment_status_id = 1;
@@ -176,7 +177,7 @@ class CartController extends Controller
 
         //session削除
         $request->session()->forget('cartData');
-        return view('items/purchase_completed', compact('order'));
+        return view('user.purchase_completed', compact('order'));
     }
 
     /*

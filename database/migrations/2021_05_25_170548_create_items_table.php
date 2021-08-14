@@ -26,9 +26,9 @@ class CreateItemsTable extends Migration
                 $table->string('img_4')->nullable()->comment('商品画像_4');
                 $table->string('sale')->nullable()->comment('割引率');
                 $table->unsignedBigInteger('timesale_id')->nullable();
-                $table->foreign('timesale_id')
-                        ->references('id')
-                        ->on('timesale');
+                // $table->foreign('timesale_id')
+                //         ->references('id')
+                //         ->on('timesale');
                 $table->unsignedBigInteger('user_id')->nullable();
                 $table->foreign('user_id')
                         ->references('id')

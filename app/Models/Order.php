@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Model\App\Models\OrderDetail;
 
 class Order extends Model
 {
@@ -12,4 +13,14 @@ class Order extends Model
         'order_date',
         'order_number',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
 }
