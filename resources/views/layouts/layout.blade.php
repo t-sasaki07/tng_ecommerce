@@ -12,14 +12,14 @@
 
         <!-- common css -->
         {{-- <link rel="stylesheet" href="css/app.css"> --}}
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="css/animate.min.css">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/font-awesome.css">
         <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/pe-icon-7-stroke.css">
-		<link rel="stylesheet" href="css/common.css">
-        <link rel="stylesheet" href="/css/app.css">
+		<link rel="stylesheet" href="{{ asset('css/common.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <script src="/js/app.js" defer></script>
 
         {{-- <!--Bootstrap CSS -->
@@ -38,10 +38,16 @@
     </head>
 
     <body>
-        @include('header')
-        @yield('content')
-        @include('footer')
-
+        <section>
+            @include('top-header')
+        </section>
+        <div>
+            @yield('content')
+        </div>
+        <div class="footer">
+            @include('footer')
+        </div>
+        
         <!-- common js -->
             <!-- <script src=""></script> -->
             <script src="js/top.js "></script>

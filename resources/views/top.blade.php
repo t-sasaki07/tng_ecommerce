@@ -1,33 +1,7 @@
 @extends('layouts.layout')
 @section('content')
 		<header class="header-section">
-			<nav class="navbar navbar-default">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="#"><b>M</b>art</a>
-					</div>
-
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="/">Home</a></li>
-							<!-- <li><a href="#">page</a></li> -->
-							<li><a href="/item/index">shop</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right cart-menu">
-						<li><a href="#" class="search-btn"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-						<li><a href="#"><span> Cart -$0&nbsp;</span> <span class="shoping-cart">0</span></a></li>
-					</ul>
-					</div><!-- /.navbar-collapse -->
-				</div><!-- /.container -->
-			</nav>
+				@include('second-header')
 		</header>
 
 		<!-- main contents -->
@@ -107,87 +81,63 @@
 					<!-- 1行に最大4アイテム/最小2アイテム -->
 						<div class="col-md-3 col-sm-6 wow fadeInLeft animated" data-wow-delay="">
 							<div class="product-item">
-
-								<img id="" src= 'images/1.jpg' class="img-responsive shop_modal" width="255" height="322" alt="">
-
-								<div class="product-hover">
-									<div class="product-meta">
-										<a href="#"><i class="pe-7s-like"></i></a>
-										<a href="#"><i class="pe-7s-shuffle"></i></a>
-										<a href="#"><i class="pe-7s-clock"></i></a>
-										<a href="#"><i class="pe-7s-cart"></i>Add to Cart</a>
-									</div>
-								</div>
-								<div class="discount_banner"></div>
-								<div class="product-title">
-									<h3 class="name"></h3>
-									<span class="price"></span>
+								<div class="row col-lg-10 col-md-6">
+										<a href="/item/{{ $random_item1->id }}" class=" img-responsive shop_modal" width="255" height="322" alt="">
+											<div class="card">
+													<img src="/images/{{ $random_item1->img_1 }}" class="item-img">
+													<div class="card-body">
+															<p class="card-title">{{ $random_item1->name }}</p>
+															<p class="card-text">¥{{ number_format($random_item1->price) }} </p>
+													</div>
+											</div>
+										</a>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 wow fadeInLeft animated" data-wow-delay="">
+
 							<div class="product-item">
-
-								<img id="" src= 'images/2.jpg' class="img-responsive shop_modal" width="255" height="322" alt="">
-
-								<div class="product-hover">
-									<div class="product-meta">
-										<a href="#"><i class="pe-7s-like"></i></a>
-										<a href="#"><i class="pe-7s-shuffle"></i></a>
-										<a href="#"><i class="pe-7s-clock"></i></a>
-										<a href="#"><i class="pe-7s-cart"></i>Add to Cart</a>
-									</div>
-								</div>
-								<div class="discount_banner"></div>
-								<div class="product-title">
-									<h3 class="name"></h3>
-									<span class="price"></span>
+								<div class="row col-lg-10 col-md-6">
+										<a href="/item/{{ $random_item2->id }}" class=" img-responsive shop_modal" alt="">
+											<div class="card">
+													<img src="/images/{{ $random_item2->img_1 }}" class="item-img">
+													<div class="card-body">
+															<p class="card-title">{{ $random_item2->name }}</p>
+															<p class="card-text">¥{{ number_format($random_item2->price) }} </p>
+													</div>
+											</div>
+										</a>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 wow fadeInLeft animated" data-wow-delay="">
+
 							<div class="product-item">
-
-								<img id="" src= 'images/3.jpg' class="img-responsive shop_modal" width="255" height="322" alt="">
-
-								<div class="product-hover">
-									<div class="product-meta">
-										<a href="#"><i class="pe-7s-like"></i></a>
-										<a href="#"><i class="pe-7s-shuffle"></i></a>
-										<a href="#"><i class="pe-7s-clock"></i></a>
-										<a href="#"><i class="pe-7s-cart"></i>Add to Cart</a>
-									</div>
-								</div>
-								<div class="discount_banner"></div>
-								<div class="product-title">
-									<h3 class="name"></h3>
-									<span class="price"></span>
+								<div class="row col-lg-10 col-md-6">
+										<a href="/item/{{ $random_item3->id }}" class=" img-responsive shop_modal" alt="">
+											<div class="card">
+													<img src="/images/{{ $random_item3->img_1 }}" class="item-img">
+													<div class="card-body">
+															<p class="card-title">{{ $random_item3->name }}</p>
+															<p class="card-text">¥{{ number_format($random_item3->price) }} </p>
+													</div>
+											</div>
+										</a>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 wow fadeInLeft animated" data-wow-delay="">
+
 							<div class="product-item">
-
-								<img id="" src= 'images/4.jpg' class="img-responsive shop_modal" width="255" height="322" alt="">
-
-								<div class="product-hover">
-									<div class="product-meta">
-										<a href="#"><i class="pe-7s-like"></i></a>
-										<a href="#"><i class="pe-7s-shuffle"></i></a>
-										<a href="#"><i class="pe-7s-clock"></i></a>
-										<a href="#"><i class="pe-7s-cart"></i>Add to Cart</a>
-									</div>
-								</div>
-								<div class="discount_banner"></div>
-								<div class="product-title">
-									<h3 class="name"></h3>
-									<span class="price"></span>
+								<div class="row col-lg-10 col-md-6">
+										<a href="/item/{{ $random_item4->id }}" class=" img-responsive shop_modal" alt="">
+											<div class="card">
+													<img src="/images/{{ $random_item4->img_1 }}" class="item-img">
+													<div class="card-body">
+															<p class="card-title">{{ $random_item4->name }}</p>
+															<p class="card-text">¥{{ number_format($random_item4->price) }} </p>
+													</div>
+											</div>
+										</a>
 								</div>
 							</div>
+							
 						</div>
 				</div>
-			</div>
-		</section>
 
 		<!-- modal -->
 		<div id="modal_ec" class="modal_ec">

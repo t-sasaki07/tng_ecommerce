@@ -38,7 +38,7 @@
 						<h1 style="color:#555555; text-align:center; font-size:1.2em; padding:24px 0px; font-weight:bold;">商品詳細</h1>
 						<div class="">
 								<div class="d-flex flex-row flex-wrap">
-                  <img src="/image/{{$item->img_1}}" alt="" class="img">
+								<img src="/images/{{ $item->img_1 }}" class="item-img">
                   <br>
                   <a href="/item/{{$item->id}}">{{$item->name}}</a><br>
                   {{$item->price}}<br>
