@@ -14,10 +14,10 @@ class ItemController extends Controller
      */
     public function top()
     {
-        $random_item1 = Item::inRandomOrder()->take(1)->first();
-        $random_item2 = Item::inRandomOrder()->take(2)->first();
-        $random_item3 = Item::inRandomOrder()->take(3)->first();
-        $random_item4 = Item::inRandomOrder()->take(4)->first();
+        $random_item1 = Item::inRandomOrder()->first();
+        $random_item2 = Item::inRandomOrder()->first();
+        $random_item3 = Item::inRandomOrder()->first();
+        $random_item4 = Item::inRandomOrder()->first();
 
         return view('top',compact('random_item1',$random_item1, 'random_item2',$random_item2, 'random_item3',$random_item3, 'random_item4',$random_item4));
     }
