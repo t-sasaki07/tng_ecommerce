@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Item;
-use App\Models\Like;
+
 
 class User extends Authenticatable
 {
@@ -61,5 +60,15 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function likeItems()
+    {
+        return $this->hasManyThrough(Item::class, Like::class);
+    }
+
+    public function orderItems()
+    {
+        return $this->hasManyThrough(OrderDetail::class, Order::class);
     }
 }

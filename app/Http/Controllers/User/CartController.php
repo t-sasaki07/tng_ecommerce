@@ -77,7 +77,6 @@ class CartController extends Controller
         if (!empty($cartData)) {
             $sessionItemsId = array_column($cartData, 'session_items_id');
             $item = Item::get()->find($sessionItemsId);
-
             foreach ($cartData as $index => &$data) {
                 //二次元目の配列を指定している$dataに'product〜'key生成 Modelオブジェクト内の各カラムを代入
                 //＆で参照渡し 仮引数($data)の変更で実引数($cartData)を更新する
@@ -190,7 +189,6 @@ class CartController extends Controller
         //itemDetail/{id} パラメータのユーザIDを元にDBを検索しModelオブジェクト取得
         $item = Item::find($id);
         if (!empty($item)) {
-            //productテーブルのcategory_idを取得、Category.phpを経由し該当idが所有するカテゴリー名を取得する
             $user = Auth::user();
             return view('item.detail', compact('item', 'user'));
         }

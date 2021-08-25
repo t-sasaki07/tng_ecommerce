@@ -18,12 +18,12 @@
                                 <th>お気に入り</th>
                             </tr>
                             @foreach($items as $item)
+                            {{--  @php dd($items) @endphp  --}}
                             <tr>
                                 <th><img src="/image/{{$item->img_1}}" alt="" class="img"></th>
                                 <th><a href="/item/{{$item->id}}">{{$item->name}}</a><br></th>
                                 <th>{{$item->price}}</th>
                                 <th>{{$item->comment}}</th>
-                                <th>{{$item->stock}}</th>
                                 <th>
                                     <!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
                                     @if (Auth::guard('user')->check() === false)

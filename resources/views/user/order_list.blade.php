@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', 'お気に入り商品一覧画面')
+@section('title', '購入履歴')
 @section('content')
 
 <div class="container-fluid">
@@ -10,20 +10,23 @@
                     <div class="d-flex flex-row flex-wrap">
                         <table claas="table-sm">
                             <tr>
+                                <th>商品画像</th>
                                 <th>商品名</th>
                                 <th>価格</th>
                                 <th>商品説明</th>
+                                <th>在庫数</th>
+                                <th>お気に入り</th>
                             </tr>
-                            {{--  @foreach($likeLists as $likeList)  --}}
-                            @for($i=0; $i<count($likeLists); $i++)
-                            {{--  @php dd($likeLists[$i][0]) @endphp  --}}
+                            @foreach($like_items as $item)
                             <tr>
-                                <th><a href="/item/{{$likeLists[$i][0]->id}}">{{$likeLists[$i][0]->name}}</a><br></th>
-                                <th>{{$likeLists[$i][0]->price}}</th>
-                                <th>{{$likeLists[$i][0]->comment}}</th>
+                                <th><img src="/image/{{$item->img_1}}" alt="" class="img"></th>
+                                <th><a href="/item/{{$item->id}}">{{$item->name}}</a><br></th>
+                                <th>{{$item->price}}</th>
+                                <th>{{$item->comment}}</th>
+                                <th>{{$item->stock}}</th>
                             </tr>
-                            @endfor
-                            {{--  @endforeach  --}}
+                            {{-- @php dd($item) @endphp --}}
+                            @endforeach
                         </table>
                     </div>
                 </div>

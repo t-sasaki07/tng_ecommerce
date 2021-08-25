@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Models\User;
 use App\Models\Item;
 use App\Models\Like;
+use App\Models\Order;
+use App\Models\OrderDetail;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,11 +31,32 @@ class UserController extends Controller
     // お気に入り一覧
     public function likeIndex()
     {
-        $likes = User::where('id', Auth::user())
-            ->with(['likes']);
+        $likeLists = Like::where('user_id', Auth::id())->get();
+        for ($i=0; $i<count($likeLists); $i++) {
+            $itemId[$i] = $likeLists[$i]["item_id"];
+            $likeLists[$i] = Item::where('id', $itemId[$i])->get();
+        };
+        // dd($likeLists);
 
-            dd($likes);
-            return view('user.like_list')->with($likes);
+        return view('user.like_list')->with('likeLists', $likeLists);
+    }
+
+    // 購入履歴一覧
+    public function orderIndex()
+    {
+        $orderInformations = Order::where('user_id', Auth::id())
+                ->with(['user', 'orderDetails.orders'])
+                ->orderBy('order_date', 'desc')
+                ->get();
+        for($i=0; $i<count($orderInformations); $i++){
+            
+        }
+
+        dd($orderInformations);
+        // $items = Auth::user()->with('orders')->with('orderItems')->get();
+        // dd($items);
+
+        // return view('user.like_list')->with($items);
     }
 
     /**

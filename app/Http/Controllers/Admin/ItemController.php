@@ -36,9 +36,16 @@ class ItemController extends Controller
      */
     public function show(Request $request, $id)
     {
+        // $item = Item::find($id);
+        // $user = User::find($id);
+
+        // return view('item.detail')->with('item',$item)->with('user',$user);
+
         $item = Item::find($id);
-        $user = User::find($id);
-        return view('item.detail')->with('item',$item)->with('user',$user);
+        if (!empty($item)) {
+            $user = Auth::user();
+            return view('item.detail', compact('item', 'user'));
+        }
     }
 
 
@@ -244,7 +251,6 @@ class ItemController extends Controller
         //ユーザー情報一覧ページへリダイレクト
         return redirect(route('itemIndex'));
     }
-
 
     /**
      * タイムセールの時間を設定する

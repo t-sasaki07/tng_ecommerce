@@ -82,12 +82,10 @@ Route::group(['middleware' => 'auth:user'], function()
     // お気に入り一覧
     Route::get('/user/likeList', 'User\UserController@likeIndex');
 
+    // 購入履歴一覧
+    Route::get('/user/orderList', 'User\UserController@orderIndex');
+
     // カート関連
-    // Route::resource('cartitem', 'User\CartController', ['only' => ['index']]);
-    // Route::group(["prefix" => 'item.detail'], function() {
-    //     Route::get('/{id}', 'User\CartController@show');
-    //     Route::post('/add', 'User\CartController@addCart')->name('addcart');
-    // });
     Route::view('/no-cartList', 'users/no_cart_list')->name('noCartlist');
     Route::view('/purchaseCompleted', 'items/purchase_completed');
 

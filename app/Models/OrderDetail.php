@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Model\App\Models\Order;
+
 
 class OrderDetail extends Model
 {
     //
     protected $fillable = [
-        'product_id',
+        'item_id',
         'order_id',
         'shipment_status_id',
         'order_quantity',
