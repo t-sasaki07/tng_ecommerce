@@ -13,9 +13,10 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('top');
-})->name('top');
+// Route::get('/', function () {
+//    return view('top');
+// })->name('top');
+Route::get('/', 'User\ItemController@top')->name('item.top');
 
 //ユーザー管理
 Route::namespace('User')->prefix('user')->name('user.')->group(function(){
@@ -62,6 +63,12 @@ Route::group(['middleware' => 'auth:user'], function()
     Route::post('item/addCart','User\CartController@addCart')->name('addcart.post');
     Route::post('item/addCart/orderFinalize','User\CartController@store')->name('orderFinalize');
 
+    // 購入履歴一覧
+    Route::get('/user/order_list', 'User\UserController@orderIndex');
+
+    // お気に入り一覧
+    Route::get('/user/like_list', 'User\UserController@likeIndex');
+
 
     // ログアウト機能
     Route::get('/user/logout', 'User\Auth\LoginController@logout')->name('userLogout');
@@ -72,6 +79,10 @@ Route::get('/item/index', 'User\ItemController@index')->name('item.index');
 
 //商品詳細画面を表示
 Route::get('/item/detail/{id}', 'User\ItemController@detail')->name('item.detail');
+
+// お気に入り機能
+//「ajaxlike.jsファイルのurl:'ルーティング'」に書くものと合わせる。
+Route::post('/ajaxlike', 'Admin\ItemController@ajaxlike')->name('items.ajaxlike');
 
 
 

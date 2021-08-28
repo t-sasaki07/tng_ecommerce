@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Admin;
-use App\Item;
+use App\Models\Item;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -49,10 +49,10 @@ class AdminController extends Controller
         // データの有無の確認
         if (is_null($user)) {
             \Session::flash('err_msg', config('message.noData'));
-            return redirect(route('admin/user_index'));
+            return redirect(route('user.index'));
 }
 
-        return view('user_detail', ['user' => $user]);
+        return view('admin/user_detail', ['user' => $user]);
     }
 
     /**
@@ -66,18 +66,18 @@ class AdminController extends Controller
         //データの有無を確認
         if(empty($id)) {
             \Session::flash('err_mesg', config('message.noData'));
-            return redirect(route('admin/user_index'));
+            return redirect(route('user.index'));
         }
 
         //DBから削除
         $user = new User();
-        $user->dataDelete($id);
+        $user->userDelete($id);
 
         //フラッシュメッセージを表示
         \Session::flash('err_msg', config('message.delete'));
 
         //ユーザー情報一覧ページへリダイレクト
-        return redirect(route('admin/user_index'));
+        return redirect(route('user.index'));
     }
 
 }

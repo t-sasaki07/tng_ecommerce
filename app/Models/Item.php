@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,6 +30,10 @@ class Item extends Model
 
     public function user() {
         return $this->belongTo(User::class);
+    }
+
+    public function order() {
+        return $this->hasMany(Order::class);
     }
 
     public function likes() {

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Like;
+use App\Models\Item;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
@@ -24,6 +28,41 @@ class UserController extends Controller
 
         return view('user.detail', ['user' => $user ]);
 
+    }
+
+    // お気に入り一覧
+    public function likeIndex()
+    {
+        $user_id = Auth::guard('user')->user()->id;
+        
+        $likeLists = Like::where('user_id', $user_id)->get();
+
+        $items = [];
+        for ($i=0; $i<count($likeLists); $i++) {
+            $item_id = $likeLists[$i]->item_id;
+            $items[$i] = Item::where('id', $item_id)->first();
+        };
+
+
+        return view('user.like_list')->with('items', $items);
+    }
+
+    // 購入履歴一覧
+    public function orderIndex()
+    {
+        $user_id = Auth::guard('user')->user()->id;
+
+        $orderLists = Order::where('user_id', $user_id)->get();
+
+        $items = [];
+        for ($i=0; $i<count($orderLists); $i++) {
+            $item_id = $orderLists[$i]->item_id;
+            $items[$i] = Item::where('id', $item_id)->first();
+            dd($items);
+        };
+
+
+        return view('user.order_list')->with('items', $items);
     }
 
     /**

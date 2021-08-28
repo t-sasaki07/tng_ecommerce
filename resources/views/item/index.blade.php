@@ -14,7 +14,6 @@
                                 <th>商品名</th>
                                 <th>価格</th>
                                 <th>商品説明</th>
-                                <th>在庫数</th>
                                 <th>お気に入り</th>
                             </tr>
                             @foreach($items as $item)
@@ -23,11 +22,10 @@
                                 <th><a href="/item/detail/{{$item->id}}">{{$item->name}}</a><br></th>
                                 <th>{{$item->price}}</th>
                                 <th>{{$item->comment}}</th>
-                                <th>{{$item->stock}}</th>
                                 <th>
                                     <!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
                                     @if (Auth::guard('user')->check() === false)
-                                    <i class="fas fa-heart"></i>
+                                    <i class="fas fa-heart">{{$like_item->likes_count}}</i>
                                     <!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
                                     @elseif ($like_model->like_exist(Auth::guard('user')->user()->id, $item->id))
                                     <p class="favorite-marke">

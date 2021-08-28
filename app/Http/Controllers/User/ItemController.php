@@ -4,9 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Item;
-use App\Time;
-use App\Like;
+use App\Models\Item;
+use App\Models\Time;
+use App\Models\Like;
 use App\Http\Requests\ItemRequest;
 use App\Http\Requests\LikeRequest;
 use App\Http\Requests\TimeSaleRequest;
@@ -15,6 +15,27 @@ use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
+
+
+    /**
+     * トップページ下部にて商品ランダム表示
+     * 
+     * @return view
+     */
+    public function top()
+    {
+        $random_item1 = Item::inRandomOrder()->first();
+        $random_item2 = Item::inRandomOrder()->first();
+        $random_item3 = Item::inRandomOrder()->first();
+        $random_item4 = Item::inRandomOrder()->first();
+
+        return view('top',compact('random_item1',$random_item1, 'random_item2',$random_item2, 'random_item3',$random_item3, 'random_item4',$random_item4));
+    }
+
+
+
+
+
     
     /**
      * 商品一覧画面を表示
@@ -23,7 +44,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::Paginate(4);
+        $items = Item::orderBy('created_at', 'desc')->paginate(6);
         $time = Time::latest()->first();
 
         //お気に入り機能

@@ -37,18 +37,22 @@
             <h1 style="color:#555555; text-align:center; font-size:1.2em; padding:24px 0px; font-weight:bold;">商品詳細</h1>
             <div class="">
                 <div class="d-flex flex-row flex-wrap">
-                    <img src="/image/<?php echo e($item->img_1); ?>" alt="" class="img">
+								<img src="<?php echo e(asset('storage/'.$item->img_1)); ?>" alt="" width="100px" height="auto">
+								<img src="<?php echo e(asset('storage/'.$item->img_2)); ?>" alt="" width="100px" height="auto">
+								<img src="<?php echo e(asset('storage/'.$item->img_3)); ?>" alt="" width="100px" height="auto">
+								<img src="<?php echo e(asset('storage/'.$item->img_4)); ?>" alt="" width="100px" height="auto">
                     <br>
                     <a href="/item/detail/<?php echo e($item->id); ?>"><?php echo e($item->name); ?></a><br>
                     <?php echo e($item->price); ?><br>
                     <?php echo e($item->comment); ?><br>
                     <?php echo e($item->stock); ?><br>
                 </div>
+								<?php if( Auth::guard('user')->check() ): ?>
                 <?php echo Form::open(['route' => ['addcart.post', 'class' => 'd-inline']]); ?>
 
 
-                    
-                    <?php echo e(Form::hidden('items_id', $item->id)); ?>
+								
+										<?php echo e(Form::hidden('items_id', $item->id)); ?>
 
                     <?php echo e(Form::hidden('users_id', $user->id)); ?>
 
@@ -70,6 +74,7 @@
                     </div>
                 <?php echo Form::close(); ?>
 
+								<?php endif; ?>
             </div>
         </div>
     </div>

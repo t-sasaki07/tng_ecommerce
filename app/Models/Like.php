@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,6 +8,12 @@ class Like extends Model
 {
     //
     protected $table = 'likes';
+
+    protected $fillable = [
+        'id',
+        'item_id',
+        'user_id',
+    ];
 
     //お気に入りしているユーザー
     public function user() {

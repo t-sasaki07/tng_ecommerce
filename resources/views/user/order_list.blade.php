@@ -1,5 +1,5 @@
-@extends('layout')
-@section('title', 'お気に入り商品一覧画面')
+@extends('layouts.layout')
+@section('title', '購入履歴')
 @section('content')
 
 <div class="container-fluid">
@@ -10,6 +10,7 @@
                     <div class="d-flex flex-row flex-wrap">
                         <table claas="table-sm">
                             <tr>
+                                <th>商品画像</th>
                                 <th>商品名</th>
                                 <th>価格</th>
                                 <th>商品説明</th>
@@ -17,7 +18,7 @@
                             @foreach($items as $item)
                             <tr>
                                 <th><img src="{{ asset('storage/'.$item->img_1)}}" alt="" width="100px" height="auto"></th>
-                                <th><a href="/item/detail/{{$item->id}}">{{$item->name}}</a><br></th>
+                                <th><a href="/item/{{$item->id}}">{{$item->name}}</a><br></th>
                                 <th>{{$item->price}}</th>
                                 <th>{{$item->comment}}</th>
                             </tr>

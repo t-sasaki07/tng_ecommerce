@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Admin;
-use App\Item;
-use App\Time;
-use App\Like;
+use App\Models\Item;
+use App\Models\Time;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
 use App\Http\Requests\LikeRequest;
@@ -28,10 +28,6 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //管理者ログイン済でなければトップページへ遷移させる
-        if (Auth::guard('admin')->check() == false ) {
-            return redirect (route('top'));
-        }
 
         //商品情報の取得
         $items = Item::all();
@@ -69,10 +65,6 @@ class ItemController extends Controller
      */
     public function register()
     {
-        //管理者ログイン済でなければトップページへ遷移させる
-        if (Auth::guard('admin')->check() == false ) {
-            return redirect (route('top'));
-        }
 
         return view('admin/item_register');
     }
@@ -143,6 +135,7 @@ class ItemController extends Controller
     {
         $items = Item::find($id);
 
+
         return view('admin/item_change', ['items' => $items]);
     }
 
@@ -198,10 +191,7 @@ class ItemController extends Controller
      */
     public function detail($id)
     {
-        //管理者ログイン済でなければトップページへ遷移させる
-        if (Auth::guard('admin')->check() == false ) {
-            return redirect (route('top'));
-        }
+
 
         $item = Item::find($id);
 

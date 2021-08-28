@@ -13,7 +13,6 @@
                                 <th>商品名</th>
                                 <th>価格</th>
                                 <th>商品説明</th>
-                                <th>在庫数</th>
                                 <th>お気に入り</th>
                             </tr>
                             <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -22,11 +21,10 @@
                                 <th><a href="/item/detail/<?php echo e($item->id); ?>"><?php echo e($item->name); ?></a><br></th>
                                 <th><?php echo e($item->price); ?></th>
                                 <th><?php echo e($item->comment); ?></th>
-                                <th><?php echo e($item->stock); ?></th>
                                 <th>
                                     <!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
                                     <?php if(Auth::guard('user')->check() === false): ?>
-                                    <i class="fas fa-heart"></i>
+                                    <i class="fas fa-heart"><?php echo e($like_item->likes_count); ?></i>
                                     <!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
                                     <?php elseif($like_model->like_exist(Auth::guard('user')->user()->id, $item->id)): ?>
                                     <p class="favorite-marke">

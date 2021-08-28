@@ -24,6 +24,7 @@ class User extends Authenticatable
         'buillding',
         'phone',
         'email',
+        'password',
     ];
 
     /**
@@ -43,6 +44,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function likeItems()
+    {
+        return $this->hasManyThrough(Item::class, Like::class);
+    }
+
+    public function orderItems()
+    {
+        return $this->hasManyThrough(OrderDetail::class, Order::class);
+    }
     
     
 
@@ -58,7 +69,7 @@ class User extends Authenticatable
      * @param $id
      *
      */
-    public function dataDelete($id)
+    public function userDelete($id)
     {
 
 
@@ -66,6 +77,8 @@ class User extends Authenticatable
             // 削除
             User::destroy($id);
         } catch (\Throwable $e) {
+            report($e);
+            \DB::rollback();
             abort(500);
         }
     }
@@ -102,4 +115,8 @@ class User extends Authenticatable
         \DB::commit();
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
