@@ -46,28 +46,49 @@
                     <a href="/item/detail/{{$item->id}}">{{$item->name}}</a><br>
                     {{$item->price}}<br>
                     {{$item->comment}}<br>
-                    {{$item->stock}}<br>
+										<!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
+										@if (Auth::guard('user')->check() === false)
+										<i class="fas fa-heart"></i>
+										<span class="likeCount">{{$like_item->likes_count}}</span>
+										<!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
+										@elseif ($like_model->like_exist(Auth::guard('user')->user()->id, $item->id))
+										<p class="favorite-marke">
+										<a class="js-like-toggle loved" href="" data-itemid="{{ $item->id }}">
+												<i class="fas fa-heart"></i>
+										</a>
+										<span class="likeCount">{{$like_item->likes_count}}</span>
+										</p>
+										<!-- ユーザーログインがあり、お気に入りしている表示 -->
+										@else
+										<p class="favorite-marke">
+										<a class="js-like-toggle" href="" data-itemid="{{$item->id}}">
+												<i class="fas fa-heart"></i>
+										</a>
+										<span class="likeCount">{{$like_item->likes_count}}</span>
+										</p>
+										@endif
+										<!-- お気に入りここまで -->
                 </div>
 								@if( Auth::guard('user')->check() )
-                {!! Form::open(['route' => ['addcart.post', 'class' => 'd-inline']]) !!}
+									{!! Form::open(['route' => ['addcart.post', 'class' => 'd-inline']]) !!}
 
-								{{-- 画面遷移時にPOST送信 session保存に使用 --}}
-										{{ Form::hidden('items_id', $item->id) }}
-                    {{ Form::hidden('users_id', $user->id) }}
+									{{-- 画面遷移時にPOST送信 session保存に使用 --}}
+											{{ Form::hidden('items_id', $item->id) }}
+											{{ Form::hidden('users_id', $user->id) }}
 
-                    <div class="form-row justify-content-center">
-                        {!! Form::label('prodqty', '購入個数', ['class' => 'mt-1']) !!}
-                        <div class="form-group col-sm-1">
-                            <div class="ml-1">
-                                <input type="number" name="item_quantity" class="form-control" id="prodqty" pattern="[1-9][0-9]*" min="1" required autofocus>
-                            </div>
-                        </div>
-                        {!! Form::label('', '個', ['class' => 'mt-1 mr-3']) !!}
-                        <div class="form-group">
-                            {!! Form::submit('カートへ', ['class' => 'btn btn-primary']) !!}
-                        </div>
-                    </div>
-                {!! Form::close() !!}
+											<div class="form-row justify-content-center">
+													{!! Form::label('prodqty', '購入個数', ['class' => 'mt-1']) !!}
+													<div class="form-group col-sm-1">
+															<div class="ml-1">
+																	<input type="number" name="item_quantity" class="form-control" id="prodqty" pattern="[1-9][0-9]*" min="1" required autofocus>
+															</div>
+													</div>
+													{!! Form::label('', '個', ['class' => 'mt-1 mr-3']) !!}
+													<div class="form-group">
+															{!! Form::submit('カートへ', ['class' => 'btn btn-primary']) !!}
+													</div>
+											</div>
+									{!! Form::close() !!}
 								@endif
             </div>
         </div>

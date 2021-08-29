@@ -69,6 +69,7 @@
                 <span class="likeCount">{{$like_item->likes_count}}</span>
                 </p>
                 @endif
+                <!-- お気に入りここまで -->
             </th>
         </tr>
         @endforeach

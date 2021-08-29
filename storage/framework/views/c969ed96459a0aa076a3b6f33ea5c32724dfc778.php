@@ -45,34 +45,55 @@
                     <a href="/item/detail/<?php echo e($item->id); ?>"><?php echo e($item->name); ?></a><br>
                     <?php echo e($item->price); ?><br>
                     <?php echo e($item->comment); ?><br>
-                    <?php echo e($item->stock); ?><br>
+										<!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
+										<?php if(Auth::guard('user')->check() === false): ?>
+										<i class="fas fa-heart"></i>
+										<span class="likeCount"><?php echo e($like_item->likes_count); ?></span>
+										<!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
+										<?php elseif($like_model->like_exist(Auth::guard('user')->user()->id, $item->id)): ?>
+										<p class="favorite-marke">
+										<a class="js-like-toggle loved" href="" data-itemid="<?php echo e($item->id); ?>">
+												<i class="fas fa-heart"></i>
+										</a>
+										<span class="likeCount"><?php echo e($like_item->likes_count); ?></span>
+										</p>
+										<!-- ユーザーログインがあり、お気に入りしている表示 -->
+										<?php else: ?>
+										<p class="favorite-marke">
+										<a class="js-like-toggle" href="" data-itemid="<?php echo e($item->id); ?>">
+												<i class="fas fa-heart"></i>
+										</a>
+										<span class="likeCount"><?php echo e($like_item->likes_count); ?></span>
+										</p>
+										<?php endif; ?>
+										<!-- お気に入りここまで -->
                 </div>
 								<?php if( Auth::guard('user')->check() ): ?>
-                <?php echo Form::open(['route' => ['addcart.post', 'class' => 'd-inline']]); ?>
+									<?php echo Form::open(['route' => ['addcart.post', 'class' => 'd-inline']]); ?>
 
 
-								
-										<?php echo e(Form::hidden('items_id', $item->id)); ?>
+									
+											<?php echo e(Form::hidden('items_id', $item->id)); ?>
 
-                    <?php echo e(Form::hidden('users_id', $user->id)); ?>
+											<?php echo e(Form::hidden('users_id', $user->id)); ?>
 
 
-                    <div class="form-row justify-content-center">
-                        <?php echo Form::label('prodqty', '購入個数', ['class' => 'mt-1']); ?>
+											<div class="form-row justify-content-center">
+													<?php echo Form::label('prodqty', '購入個数', ['class' => 'mt-1']); ?>
 
-                        <div class="form-group col-sm-1">
-                            <div class="ml-1">
-                                <input type="number" name="item_quantity" class="form-control" id="prodqty" pattern="[1-9][0-9]*" min="1" required autofocus>
-                            </div>
-                        </div>
-                        <?php echo Form::label('', '個', ['class' => 'mt-1 mr-3']); ?>
+													<div class="form-group col-sm-1">
+															<div class="ml-1">
+																	<input type="number" name="item_quantity" class="form-control" id="prodqty" pattern="[1-9][0-9]*" min="1" required autofocus>
+															</div>
+													</div>
+													<?php echo Form::label('', '個', ['class' => 'mt-1 mr-3']); ?>
 
-                        <div class="form-group">
-                            <?php echo Form::submit('カートへ', ['class' => 'btn btn-primary']); ?>
+													<div class="form-group">
+															<?php echo Form::submit('カートへ', ['class' => 'btn btn-primary']); ?>
 
-                        </div>
-                    </div>
-                <?php echo Form::close(); ?>
+													</div>
+											</div>
+									<?php echo Form::close(); ?>
 
 								<?php endif; ?>
             </div>

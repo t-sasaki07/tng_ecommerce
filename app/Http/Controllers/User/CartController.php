@@ -77,8 +77,8 @@ class CartController extends Controller
         if (!empty($cartData)) {
             $sessionItemsId = array_column($cartData, 'session_items_id');
             $item = Item::get()->find($sessionItemsId);
-
-            foreach ($cartData as $index => &$data) {
+            
+            foreach ( $cartData as $index => &$data ) {
                 //二次元目の配列を指定している$dataに'product〜'key生成 Modelオブジェクト内の各カラムを代入
                 //＆で参照渡し 仮引数($data)の変更で実引数($cartData)を更新する
                 $data['item_name'] = $item[$index]->name;
@@ -98,7 +98,7 @@ class CartController extends Controller
 
         } else {
 
-            return view('user.no_cart_list',  ['user' => Auth::user()]);
+            return view('user.no_cart_list',  ['user' => Auth::guard('user')->user()]);
         }
     }
 

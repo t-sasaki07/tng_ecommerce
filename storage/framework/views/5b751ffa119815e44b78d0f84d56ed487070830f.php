@@ -69,6 +69,7 @@
                 <span class="likeCount"><?php echo e($like_item->likes_count); ?></span>
                 </p>
                 <?php endif; ?>
+                <!-- お気に入りここまで -->
             </th>
         </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

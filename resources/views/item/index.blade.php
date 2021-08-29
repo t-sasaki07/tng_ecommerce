@@ -23,26 +23,28 @@
                                 <th>{{$item->price}}</th>
                                 <th>{{$item->comment}}</th>
                                 <th>
-                                    <!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
-                                    @if (Auth::guard('user')->check() === false)
-                                    <i class="fas fa-heart">{{$like_item->likes_count}}</i>
-                                    <!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
-                                    @elseif ($like_model->like_exist(Auth::guard('user')->user()->id, $item->id))
-                                    <p class="favorite-marke">
-                                    <a class="js-like-toggle loved" href="" data-itemid="{{ $item->id }}">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                    <span class="likeCount">{{$like_item->likes_count}}</span>
-                                    </p>
-                                    <!-- ユーザーログインがあり、お気に入りしている表示 -->
-                                    @else
-                                    <p class="favorite-marke">
-                                    <a class="js-like-toggle" href="" data-itemid="{{$item->id}}">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                    <span class="likeCount">{{$like_item->likes_count}}</span>
-                                    </p>
-                                    @endif
+                                <!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
+                                @if (Auth::guard('user')->check() === false)
+                                <i class="fas fa-heart"></i>
+                                <span class="likeCount">{{$like_item->likes_count}}</span>
+                                <!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
+                                @elseif ($like_model->like_exist(Auth::guard('user')->user()->id, $item->id))
+                                <p class="favorite-marke">
+                                <a class="js-like-toggle loved" href="" data-itemid="{{ $item->id }}">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                                <span class="likeCount">{{$like_item->likes_count}}</span>
+                                </p>
+                                <!-- ユーザーログインがあり、お気に入りしている表示 -->
+                                @else
+                                <p class="favorite-marke">
+                                <a class="js-like-toggle" href="" data-itemid="{{$item->id}}">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                                <span class="likeCount">{{$like_item->likes_count}}</span>
+                                </p>
+                                @endif
+                                <!-- お気に入りここまで -->
                                 <th>
                             </tr>
                             @endforeach

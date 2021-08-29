@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    You are logged in!<br>
+                    <a href="/tentative">管理ページ</a><br>
                 </div>
             </div>
         </div>

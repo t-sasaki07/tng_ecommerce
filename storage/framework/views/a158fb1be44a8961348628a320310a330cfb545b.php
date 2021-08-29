@@ -5,7 +5,7 @@
 					<div  class="col-md-6">
 						<div class="header-top-content">
 							<ul class="nav nav-pills navbar-left">
-								<li><a href="#"><i class="pe-7s-call"></i><span>STORE TOP</span></a></li>
+								<li><a href="<?php echo e(url('/')); ?>"><i class="pe-7s-call"></i><span>STORE TOP</span></a></li>
 								<li><a href=""><i class="pe-7s-call"></i><span>123-123456789</span></a></li>
 								<li><a href=""><i class="pe-7s-mail"></i><span> info@mart.com</span></a></li>
 							</ul>
@@ -18,7 +18,7 @@
 								<li><a href="#">Cart</a></li>
                                 <?php if(Route::has('login')): ?>
                                     <?php if(auth()->guard()->check()): ?>
-                                        <li><a href="<?php echo e(url('/home')); ?>"><i class="pe-7s-lock"></i>Home</a></li>
+                                        <li><a href="<?php echo e(url('/')); ?>"><i class="pe-7s-lock"></i>Home</a></li>
                                     <?php else: ?>
                                         <li><a href="<?php echo e(route('user.login')); ?>"><i class="pe-7s-lock"></i>Login</a></li>
 
@@ -27,7 +27,7 @@
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 <?php endif; ?>
-								<li><a href="#">Manage</a></li>
+								<li><a href="<?php echo e(url('/admin/login')); ?>">Manage</a></li>
 							</ul>
 						</div>
 					</div>

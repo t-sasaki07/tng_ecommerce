@@ -5,7 +5,7 @@
 					<div  class="col-md-6">
 						<div class="header-top-content">
 							<ul class="nav nav-pills navbar-left">
-								<li><a href="#"><i class="pe-7s-call"></i><span>STORE TOP</span></a></li>
+								<li><a href="{{ url('/') }}"><i class="pe-7s-call"></i><span>STORE TOP</span></a></li>
 								<li><a href=""><i class="pe-7s-call"></i><span>123-123456789</span></a></li>
 								<li><a href=""><i class="pe-7s-mail"></i><span> info@mart.com</span></a></li>
 							</ul>
@@ -18,7 +18,7 @@
 								<li><a href="#">Cart</a></li>
                                 @if (Route::has('login'))
                                     @auth
-                                        <li><a href="{{ url('/home') }}"><i class="pe-7s-lock"></i>Home</a></li>
+                                        <li><a href="{{ url('/') }}"><i class="pe-7s-lock"></i>Home</a></li>
                                     @else
                                         <li><a href="{{ route('user.login') }}"><i class="pe-7s-lock"></i>Login</a></li>
 
@@ -27,7 +27,7 @@
                                         @endif
                                     @endauth
                                 @endif
-								<li><a href="#">Manage</a></li>
+								<li><a href="{{ url('/admin/login') }}">Manage</a></li>
 							</ul>
 						</div>
 					</div>

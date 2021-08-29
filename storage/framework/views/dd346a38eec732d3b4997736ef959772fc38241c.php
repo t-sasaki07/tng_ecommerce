@@ -22,26 +22,28 @@
                                 <th><?php echo e($item->price); ?></th>
                                 <th><?php echo e($item->comment); ?></th>
                                 <th>
-                                    <!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
-                                    <?php if(Auth::guard('user')->check() === false): ?>
-                                    <i class="fas fa-heart"><?php echo e($like_item->likes_count); ?></i>
-                                    <!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
-                                    <?php elseif($like_model->like_exist(Auth::guard('user')->user()->id, $item->id)): ?>
-                                    <p class="favorite-marke">
-                                    <a class="js-like-toggle loved" href="" data-itemid="<?php echo e($item->id); ?>">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                    <span class="likeCount"><?php echo e($like_item->likes_count); ?></span>
-                                    </p>
-                                    <!-- ユーザーログインがあり、お気に入りしている表示 -->
-                                    <?php else: ?>
-                                    <p class="favorite-marke">
-                                    <a class="js-like-toggle" href="" data-itemid="<?php echo e($item->id); ?>">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                    <span class="likeCount"><?php echo e($like_item->likes_count); ?></span>
-                                    </p>
-                                    <?php endif; ?>
+                                <!-- ユーザーログインがない場合、お気に入り機能を非表示にする -->
+                                <?php if(Auth::guard('user')->check() === false): ?>
+                                <i class="fas fa-heart"></i>
+                                <span class="likeCount"><?php echo e($like_item->likes_count); ?></span>
+                                <!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
+                                <?php elseif($like_model->like_exist(Auth::guard('user')->user()->id, $item->id)): ?>
+                                <p class="favorite-marke">
+                                <a class="js-like-toggle loved" href="" data-itemid="<?php echo e($item->id); ?>">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                                <span class="likeCount"><?php echo e($like_item->likes_count); ?></span>
+                                </p>
+                                <!-- ユーザーログインがあり、お気に入りしている表示 -->
+                                <?php else: ?>
+                                <p class="favorite-marke">
+                                <a class="js-like-toggle" href="" data-itemid="<?php echo e($item->id); ?>">
+                                    <i class="fas fa-heart"></i>
+                                </a>
+                                <span class="likeCount"><?php echo e($like_item->likes_count); ?></span>
+                                </p>
+                                <?php endif; ?>
+                                <!-- お気に入りここまで -->
                                 <th>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
