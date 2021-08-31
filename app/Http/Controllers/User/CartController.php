@@ -145,6 +145,8 @@ class CartController extends Controller
     */
     public function store(Request $request)
     {
+        $user_id = Auth::guard('user')->user()->id;
+
         //$request->session()->forget('cartData');
         $cartData = $request->session()->get('cartData');
         $now = Carbon::now();
@@ -169,6 +171,7 @@ class CartController extends Controller
             $orderDetail = new \App\Models\OrderDetail;
             $orderDetail->item_id = $data['session_items_id'];
             $orderDetail->order_id = $savedOrderId[0];
+            $orderDetail->user_id = $user_id;
             $orderDetail->shipment_status_id = 1;
             $orderDetail->order_quantity = $data['session_quantity'];
             $orderDetail->shipment_date = $now;

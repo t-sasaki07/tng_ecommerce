@@ -1,4 +1,4 @@
-@yield('user_menu')
+<?php echo $__env->yieldContent('user_menu'); ?>
 <header class="header-section">
     <nav class="navbar navbar-default">
         <div class="container">
@@ -16,16 +16,17 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{ action('User\UserController@index') }}"><button class="user-btn">My Page</a></li>
+                    <li class="active"><a href="<?php echo e(action('User\UserController@index')); ?>"><button class="user-btn">My Page</a></li>
                     <li><a href="#">Favorite</a></li>
                     <li><a href="#">Order History</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right cart-menu">
                 <li><a href="#" class="search-btn"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                <li><a href="{{ url('cartlist') }}"><span> Cart -$0&nbsp;</span> <span class="shoping-cart">0</span></a></li>
+                <li><a href="<?php echo e(url('cartlist')); ?>"><span> Cart -$0&nbsp;</span> <span class="shoping-cart">0</span></a></li>
             </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
     </nav>
 </header>
 
+<?php /**PATH /Applications/MAMP/htdocs/tng_ec_sum/resources/views/user_menu.blade.php ENDPATH**/ ?>

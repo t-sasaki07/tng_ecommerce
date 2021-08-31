@@ -69,6 +69,10 @@ Route::group(['middleware' => 'auth:user'], function()
     // お気に入り一覧
     Route::get('/user/like_list', 'User\UserController@likeIndex');
 
+    // ユーザー情報一覧
+    Route::get('/user/top', 'User\UserController@top');
+
+
 
     // ログアウト機能
     Route::get('/user/logout', 'User\Auth\LoginController@logout')->name('userLogout');

@@ -15,6 +15,22 @@ use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
+
+    /**
+     * マイページにてユーザー情報の表示
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function top()
+    {
+        // userデータの取得
+        $userId = Auth::guard('user')->user()->id;
+        $user = Auth::guard('user')->user()->find($userId);
+
+        return view('user.top', ['user' => $user ]);
+
+    }
+
     /**
      * マイページにてユーザー情報の表示
      *
@@ -51,14 +67,13 @@ class UserController extends Controller
     public function orderIndex()
     {
         $user_id = Auth::guard('user')->user()->id;
+        $orderLists = OrderDetail::where('user_id', $user_id)->get();
 
-        $orderLists = Order::where('user_id', $user_id)->get();
 
         $items = [];
         for ($i=0; $i<count($orderLists); $i++) {
             $item_id = $orderLists[$i]->item_id;
             $items[$i] = Item::where('id', $item_id)->first();
-            dd($items);
         };
 
 

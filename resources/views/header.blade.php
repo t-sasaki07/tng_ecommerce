@@ -14,8 +14,8 @@
 					<div  class="col-md-6">
 						<div class="header-top-menu">
 							<ul class="nav nav-pills navbar-right">
-								<li><a href='#'>My Account</a></li>
-								<li><a href="#">Cart</a></li>
+								<li><a href="{{url('/user/top')}}">My Account</a></li>
+								<li><a href="{{ url('cartlist') }}">Cart</a></li>
                                 @if (Route::has('login'))
                                     @auth
                                         <li><a href="{{ url('/') }}"><i class="pe-7s-lock"></i>Home</a></li>

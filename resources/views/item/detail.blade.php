@@ -23,7 +23,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right cart-menu">
 				<li><a href="#" class="search-btn"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-				<li><a href="#"><span> Cart -$0&nbsp;</span> <span class="shoping-cart">0</span></a></li>
+				<li><a href="{{ url('cartlist') }}"><span> Cart -$0&nbsp;</span> <span class="shoping-cart">0</span></a></li>
 			</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container -->

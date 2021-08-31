@@ -14,8 +14,8 @@
 					<div  class="col-md-6">
 						<div class="header-top-menu">
 							<ul class="nav nav-pills navbar-right">
-								<li><a href='#'>My Account</a></li>
-								<li><a href="#">Cart</a></li>
+								<li><a href="<?php echo e(url('/user/top')); ?>">My Account</a></li>
+								<li><a href="<?php echo e(url('cartlist')); ?>">Cart</a></li>
                                 <?php if(Route::has('login')): ?>
                                     <?php if(auth()->guard()->check()): ?>
                                         <li><a href="<?php echo e(url('/')); ?>"><i class="pe-7s-lock"></i>Home</a></li>
