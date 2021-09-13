@@ -13,13 +13,13 @@
 
     <!-- タイムセール時刻設定 -->
     <form method=post action="{{route('timesale')}}" onSubmit="return checkSubmit()">
-    @csrf
-    @if (!empty($time->start))
-    <p>開始時間</p>
-    <input id="start" type="time" name="start" value="{{ $time->start }}">
-    <p>終了時間</p>
-    <input id="finish" type="time" name="finish" value="{{ $time->finish }}">
-    <button type=submit class="btn btn-primary">設定する</button>
+        @csrf
+        @if (!empty($time->start))
+        <p>開始時間</p>
+        <input id="start" type="time" name="start" value="{{ $time->start }}">
+        <p>終了時間</p>
+        <input id="finish" type="time" name="finish" value="{{ $time->finish }}">
+        <button type=submit class="btn btn-primary">設定する</button>
     </form>
     <form method=post action="{{ route('timeDelete', $time->id) }}" onSubmit="return checkDelete()">
         @csrf
@@ -55,18 +55,18 @@
                 <!-- ユーザーログインがあり、まだお気に入りしていない表示  -->
                 @elseif ($like_model->like_exist(Auth::guard('user')->user()->id, $item->id))
                 <p class="favorite-marke">
-                <a class="js-like-toggle loved" href="" data-itemid="{{ $item->id }}">
-                    <i class="fas fa-heart"></i>
-                </a>
-                <span class="likeCount">{{$like_item->likes_count}}</span>
+                    <a class="js-like-toggle loved" href="" data-itemid="{{ $item->id }}">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <span class="likeCount">{{$like_item->likes_count}}</span>
                 </p>
                 <!-- ユーザーログインがあり、お気に入りしている表示 -->
                 @else
                 <p class="favorite-marke">
-                <a class="js-like-toggle" href="" data-itemid="{{$item->id}}">
-                    <i class="fas fa-heart"></i>
-                </a>
-                <span class="likeCount">{{$like_item->likes_count}}</span>
+                    <a class="js-like-toggle" href="" data-itemid="{{$item->id}}">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <span class="likeCount">{{$like_item->likes_count}}</span>
                 </p>
                 @endif
                 <!-- お気に入りここまで -->
@@ -89,12 +89,12 @@
     }
 </script>
 <script>
-        function checkDelete() {
-            if (window.confirm('タイムセールの時刻を削除してよろしいですか？')) {
-                return true;
-            } else {
-                return false;
-            }
+    function checkDelete() {
+        if (window.confirm('タイムセールの時刻を削除してよろしいですか？')) {
+            return true;
+        } else {
+            return false;
         }
+    }
 </script>
 @endsection
